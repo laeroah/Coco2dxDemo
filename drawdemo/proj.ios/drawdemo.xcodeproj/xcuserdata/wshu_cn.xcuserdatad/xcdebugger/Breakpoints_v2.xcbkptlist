@@ -141,6 +141,50 @@
             endingLineNumber = "80"
             landmarkName = "CanvasLayer::ccTouchBegan(CCTouch *pTouche, CCEvent *pEvent)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CanvasLayer::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/CanvasLayer.cpp"
+                  timestampString = "412109127.436698"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "66">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CanvasLayer::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/CanvasLayer.cpp"
+                  timestampString = "412109127.436996"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "82">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CanvasLayer::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/CanvasLayer.cpp"
+                  timestampString = "412109127.437332"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "102">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -150,11 +194,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/CanvasLayer.cpp"
-            timestampString = "412107223.841505"
+            timestampString = "412108754.809555"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "CanvasLayer::init()"
             landmarkType = "5">
          </BreakpointContent>

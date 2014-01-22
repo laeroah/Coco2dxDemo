@@ -16,7 +16,7 @@ bool CanvasLayer::init()
         mCurrentPicture = PictureManager::getSharedInstance()->createPicture();
         mCurrentPicture->retain();
         this->setTouchEnabled(true);
-		return true;
+     	return true;
 	}
 	else
 	{
