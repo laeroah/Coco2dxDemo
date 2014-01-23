@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412107028.984813"
+            timestampString = "412140510.870737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
             landmarkType = "5">
          </BreakpointContent>
@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412107028.984813"
+            timestampString = "412140510.870737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "DrawBusListener::NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner)"
             landmarkType = "5">
          </BreakpointContent>
@@ -140,22 +140,6 @@
             startingLineNumber = "77"
             endingLineNumber = "77"
             landmarkName = "CanvasLayer::ccTouchBegan(CCTouch *pTouche, CCEvent *pEvent)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/CanvasLayer.cpp"
-            timestampString = "412109701.524274"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "CanvasLayer::init()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -230,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/CanvasLayer.cpp"
-            timestampString = "412110395.212083"
+            timestampString = "412140510.870737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "CanvasLayer::ccTouchEnded(CCTouch *pTouche, CCEvent *pEvent)"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412113958.25538"
+            timestampString = "412140510.870737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "DrawBusListener::NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner)"
             landmarkType = "5">
          </BreakpointContent>
@@ -262,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/DrawPictureScene.cpp"
-            timestampString = "412114033.134454"
+            timestampString = "412140510.870737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "DrawPictureScene::init()"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412114233.145126"
+            timestampString = "412140510.870737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "DrawBusListener::LostAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412115007.099664"
+            timestampString = "412140510.870737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const char* joiner)"
             landmarkType = "5">
          </BreakpointContent>

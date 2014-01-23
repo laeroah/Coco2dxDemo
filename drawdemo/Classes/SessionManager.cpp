@@ -7,6 +7,8 @@
 //
 
 #include "SessionManager.h"
+#include "cocos2d.h"
+using namespace cocos2d;
 
 const static char* DRAW_SERVICE_INTERFACE_NAME = "org.alljoyn.bus.draw";
 const static char* NAME_PREFIX = "org.alljoyn.bus.draw.";

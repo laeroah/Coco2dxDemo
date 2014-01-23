@@ -18,7 +18,6 @@ bool CanvasLayer::init()
     mCurrentPicture = PictureManager::getSharedInstance()->createPicture();
     mCurrentPicture->retain();
     this->setTouchEnabled(true);
-    mCommandId = 0;
     return true;
 	
 }
@@ -111,11 +110,7 @@ void CanvasLayer::ccTouchEnded(CCTouch  *pTouche, CCEvent *pEvent)
     
     if (SessionManager::getSharedInstance()->mSessionMode == ServerMode)
     {
-        DrawCommand *command = new DrawCommand();
-        command->mCommandType = DRAW_LINE;
-        command->mFromPoint = *mLastPoint;
-        command->mToPoint = *p;
-        mCurrentPicture->addNewCommand(command);
+        mCurrentPicture->addNewCommand(DRAW_LINE,mLastPoint,p);
     }
     else
     {
