@@ -18,7 +18,10 @@ class DrawPictureScene : public cocos2d::CCScene
 public:
     DrawPictureScene():_layer(NULL) {};
     ~DrawPictureScene();
+    void checkSessionManager(float dt);
     bool init();
+    void joinSessionNotification(CCObject* obj);
+    void reqSyncNotification(CCObject* obj);
     CREATE_FUNC(DrawPictureScene);
     
     CC_SYNTHESIZE_READONLY(CanvasLayer*, _layer, Layer);

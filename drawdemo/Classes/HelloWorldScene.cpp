@@ -75,7 +75,7 @@ bool HelloWorld::onTextFieldAttachWithIME(CCTextFieldTTF *pSender)
 void HelloWorld::gotoDrawPictureScene()
 {
     DrawPictureScene *drawPictureScene = DrawPictureScene::create();
-    CCDirector::sharedDirector()->pushScene(drawPictureScene);
+    CCDirector::sharedDirector()->replaceScene(drawPictureScene);
 }
 
 void HelloWorld::RunAsServer(CCObject* pSender)

@@ -38,15 +38,17 @@ public:
 
 class Picture : public CCObject
 {
+private:
+    int mCommandId;
 public:
     Picture();
     virtual ~Picture();
     bool init();
     
     CCArray *mCommandList;
-    void    addNewCommand(DrawCommand *newCommand);
+    void    addNewCommand(DrawCommandType commandType, CCPoint *fromPoint , CCPoint *toPoint);
     void    clearAllCommands();
-    
+    int     getLastCommandId(){ return mCommandId;};
     CREATE_FUNC(Picture);
 };
 

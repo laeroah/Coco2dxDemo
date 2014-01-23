@@ -32,7 +32,9 @@ public:
     virtual bool ccTouchBegan(CCTouch  *pTouches, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch  *pTouches, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch  *pTouches, CCEvent *pEvent);
+    virtual void registerWithTouchDispatcher();
     
+    Picture *getCurrentPicture(){ return mCurrentPicture;}
     CREATE_FUNC(CanvasLayer);
 };
 

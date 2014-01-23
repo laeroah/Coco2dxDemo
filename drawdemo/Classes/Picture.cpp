@@ -34,8 +34,13 @@ bool Picture::init()
     return true;
 }
 
-void    Picture::addNewCommand(DrawCommand *newCommand)
+void    Picture::addNewCommand(DrawCommandType commandType, CCPoint *fromPoint , CCPoint *toPoint)
 {
+    DrawCommand *newCommand = DrawCommand::create();
+    newCommand->mCommandType = commandType;
+    newCommand->mCommandId = ++mCommandId;
+    newCommand->mFromPoint = *fromPoint;
+    newCommand->mToPoint = *toPoint;
     mCommandList->addObject(newCommand);
 }
 

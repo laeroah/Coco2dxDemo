@@ -25,6 +25,9 @@
 #include <cstdlib>
 #include <signal.h>
 
+#define JOIN_SESSION_NOTIFICATION "JoinSession"
+#define REQ_SYNC_NOTIFICATION "ReqSync"
+
 using namespace ajn;
 
 typedef enum
@@ -45,18 +48,22 @@ private:
     const InterfaceDescription::Member* drawSignalMember;
 };
 
+class SessionManager;
+
 class DrawBusListener : public BusListener, public SessionPortListener, public SessionListener{
 private:
     BusAttachment *mBusAttachment;
+    SessionManager *mSessionManager;
 public:
     bool mJoinComplete;
 public:
-    DrawBusListener(BusAttachment *busAttachment);
+    DrawBusListener(SessionManager *sessionManager, BusAttachment *busAttachment);
     void FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix);
     void LostAdvertisedName(const char* name, TransportMask transport, const char* namePrefix);
     void NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner);
     bool AcceptSessionJoiner(SessionPort sessionPort, const char* joiner, const SessionOpts& opts);
     void SessionJoined(SessionPort sessionPort, SessionId id, const char* joiner);
+    void SessionLost(SessionId sessionId, SessionLostReason reason);
 };
 
 class SessionManager
@@ -73,10 +80,10 @@ class SessionManager
     QStatus CreateSession(TransportMask mask);
     QStatus AdvertiseName(TransportMask mask);
     QStatus FindAdvertisedName(void);
-    QStatus CallReqSync(SessionId sessionId,int commandId);
-    QStatus CallSendSync(SessionId sessionId,int commandCount,std::string &commandContent);
+    QStatus CallReqSync(int commandId);
+    QStatus CallSendSync(int commandCount,std::string &commandContent);
+    void    runProcess();
     
-    //client
     qcc::String mServiceName;
     SessionId mSessionId;
     

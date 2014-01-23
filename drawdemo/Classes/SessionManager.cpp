@@ -68,7 +68,8 @@ void DrawObject::ReqSync(const InterfaceDescription::Member* member, Message& ms
 {
     /* Concatenate the two input strings and reply with the result. */
     int commandId = msg->GetArg(0)->v_int32;
-    qcc::String inStr2 = msg->GetArg(1)->v_string.str;
+    
+    
     
     MsgArg outArg("b", 1);
     QStatus status = MethodReply(msg, &outArg, 1);
@@ -91,10 +92,10 @@ void DrawObject::SendSync(const InterfaceDescription::Member* member, Message& m
 }
 
 
-DrawBusListener::DrawBusListener(BusAttachment *busAttachment)
+DrawBusListener::DrawBusListener(SessionManager *sessionManager,BusAttachment *busAttachment)
 {
     mBusAttachment = busAttachment;
-
+    mSessionManager = sessionManager;
 }
 
 void DrawBusListener::NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner)
@@ -140,6 +141,13 @@ void DrawBusListener::LostAdvertisedName(const char* name, TransportMask transpo
         printf("Got LostAdvertisedName for %s from transport 0x%x\n", name, transport);
 }
 
+void DrawBusListener::SessionLost(SessionId sessionId, SessionLostReason reason)
+{
+    if (mSessionManager->mSessionMode == ClientMode) {
+        
+    }
+}
+
 bool DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* joiner, const SessionOpts& opts)
 {
         if (sessionPort != DRAW_PORT) {
@@ -163,6 +171,11 @@ void DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const
     } else {
             printf("Set link timeout failed\n");
     }
+    
+    if (mSessionManager->mSessionMode == ClientMode)
+    {
+        CCNotificationCenter::sharedNotificationCenter()->postNotification(JOIN_SESSION_NOTIFICATION, NULL);
+    }
 }
 
 SessionManager::SessionManager()
@@ -182,6 +195,13 @@ SessionManager::~SessionManager()
     
     if (mBusAttachment) {
         delete mBusAttachment;
+    }
+}
+
+void    SessionManager::runProcess()
+{
+    if (mSessionMode != ClientMode) {
+        return;
     }
 }
 
@@ -209,7 +229,7 @@ bool  SessionManager::initServerWithDrawerName(const char *drawerName)
     }
     
     if (ER_OK == status) {
-        mBusListener = new DrawBusListener(mBusAttachment);
+        mBusListener = new DrawBusListener(this,mBusAttachment);
         if (!mBusListener) {
              status = ER_OUT_OF_MEMORY;
         }
@@ -294,7 +314,7 @@ bool  SessionManager::initClientWithDrawerName(const char *drawerName)
     }
     
     if (ER_OK == status) {
-        mBusListener = new DrawBusListener(mBusAttachment);
+        mBusListener = new DrawBusListener(this,mBusAttachment);
         if (!mBusListener) {
             status = ER_OUT_OF_MEMORY;
         }
@@ -430,7 +450,7 @@ QStatus SessionManager::FindAdvertisedName(void)
 }
 
 
-QStatus SessionManager::CallSendSync(SessionId sessionId,int commandCount,std::string &commandContent)
+QStatus SessionManager::CallSendSync(int commandCount,std::string &commandContent)
 {
     ProxyBusObject remoteObj(*mBusAttachment, mServiceName.c_str(), DRAW_SERVICE_OBJECT_PATH, mSessionId);
     const InterfaceDescription* alljoynTestIntf = mBusAttachment->GetInterface(DRAW_SERVICE_INTERFACE_NAME);
@@ -441,7 +461,7 @@ QStatus SessionManager::CallSendSync(SessionId sessionId,int commandCount,std::s
     Message reply(*mBusAttachment);
     MsgArg inputs[3];
     
-    inputs[0].Set("i", sessionId);
+    inputs[0].Set("i", mSessionId);
     inputs[1].Set("i", commandCount);
     inputs[2].Set("s", commandContent.c_str());
     
@@ -457,7 +477,7 @@ QStatus SessionManager::CallSendSync(SessionId sessionId,int commandCount,std::s
     return status;
 }
 
-QStatus SessionManager::CallReqSync(SessionId sessionId,int commandId)
+QStatus SessionManager::CallReqSync(int commandId)
 {
     ProxyBusObject remoteObj(*mBusAttachment, mServiceName.c_str(), DRAW_SERVICE_OBJECT_PATH, mSessionId);
     const InterfaceDescription* alljoynTestIntf = mBusAttachment->GetInterface(DRAW_SERVICE_INTERFACE_NAME);
@@ -468,7 +488,7 @@ QStatus SessionManager::CallReqSync(SessionId sessionId,int commandId)
     Message reply(*mBusAttachment);
     MsgArg inputs[2];
     
-    inputs[0].Set("i", sessionId);
+    inputs[0].Set("i", mSessionId);
     inputs[1].Set("i", commandId);
     
     QStatus status = remoteObj.MethodCall(DRAW_SERVICE_INTERFACE_NAME, "ReqSync", inputs, 2, reply, 5000);

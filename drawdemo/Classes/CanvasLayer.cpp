@@ -10,18 +10,17 @@
 
 bool CanvasLayer::init()
 {
-	if ( CCLayerColor::initWithColor( ccc4(255,255,255,255) ) )
+	if ( !CCLayerColor::initWithColor( ccc4(255,255,255,255) ) )
 	{
-        //create current Picuture
-        mCurrentPicture = PictureManager::getSharedInstance()->createPicture();
-        mCurrentPicture->retain();
-        this->setTouchEnabled(true);
-     	return true;
-	}
-	else
-	{
-		return false;
-	}
+        return false;
+    }
+    //create current Picuture
+    mCurrentPicture = PictureManager::getSharedInstance()->createPicture();
+    mCurrentPicture->retain();
+    this->setTouchEnabled(true);
+    mCommandId = 0;
+    return true;
+	
 }
 
 void CanvasLayer::onEnter()
@@ -74,8 +73,7 @@ void    CanvasLayer::releaseLastPoint()
 bool  CanvasLayer::ccTouchBegan(CCTouch  *pTouche, CCEvent *pEvent)
 {
     releaseLastPoint();
-    CCLayerColor::ccTouchBegan(pTouche,pEvent);
-        mLastPoint = new CCPoint();
+    mLastPoint = new CCPoint();
     mLastPoint->x=pTouche->getLocation().x ;
     mLastPoint->y=pTouche->getLocation().y;
    
@@ -94,13 +92,7 @@ void CanvasLayer::ccTouchMoved(CCTouch  *pTouche, CCEvent *pEvent)
     
     if (SessionManager::getSharedInstance()->mSessionMode == ServerMode)
     {
-        DrawCommand *command = DrawCommand::create();
-        command->mCommandType = DRAW_LINE;
-        command->mFromPoint = *mLastPoint;
-        command->mToPoint = *p;
-        releaseLastPoint();
-        mLastPoint = p;
-        mCurrentPicture->addNewCommand(command);
+        mCurrentPicture->addNewCommand(DRAW_LINE,mLastPoint,p);
     }
     else
     {
@@ -131,4 +123,9 @@ void CanvasLayer::ccTouchEnded(CCTouch  *pTouche, CCEvent *pEvent)
     }
     
     releaseLastPoint();
+}
+
+void CanvasLayer::registerWithTouchDispatcher()
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, this->getTouchPriority(), true);
 }
