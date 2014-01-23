@@ -86,15 +86,36 @@ void CanvasLayer::ccTouchMoved(CCTouch  *pTouche, CCEvent *pEvent)
     }
     
     CCPoint *p = new CCPoint();
-    p->x=pTouche->getLocation().x;
-    p->y=pTouche->getLocation().y;
+    p->x= ceil(pTouche->getLocation().x);
+    p->y= ceil(pTouche->getLocation().y);
     
     if (SessionManager::getSharedInstance()->mSessionMode == ServerMode)
     {
         mCurrentPicture->addNewCommand(DRAW_LINE,mLastPoint,p);
+        if (mHasRecvReqSync) {
+            sendSyncCommand(0);
+        }
     }
     else
     {
+    }
+    releaseLastPoint();
+    mLastPoint = p;
+}
+
+void CanvasLayer::sendSyncCommand(float dt)
+{
+    string commandContent;
+    int commandsCount;
+    bool hasMore;
+    int lastSendCommandId;
+    if(getCurrentPicture()->getSyncCommandsContent(mLastSendCommandId, 40 , lastSendCommandId, commandContent, commandsCount, hasMore))
+    {
+        mLastSendCommandId = lastSendCommandId;
+        SessionManager::getSharedInstance()->CallSendSync(commandsCount, commandContent);
+        if (hasMore) {
+            this->schedule(schedule_selector(CanvasLayer::sendSyncCommand),0.1,1,0);
+        }
     }
 }
 
@@ -105,12 +126,15 @@ void CanvasLayer::ccTouchEnded(CCTouch  *pTouche, CCEvent *pEvent)
     }
     
     CCPoint *p = new CCPoint();
-    p->x=pTouche->getLocation().x;
-    p->y=pTouche->getLocation().y;
+    p->x= ceil(pTouche->getLocation().x);
+    p->y= ceil(pTouche->getLocation().y);
     
     if (SessionManager::getSharedInstance()->mSessionMode == ServerMode)
     {
         mCurrentPicture->addNewCommand(DRAW_LINE,mLastPoint,p);
+        if (mHasRecvReqSync) {
+            sendSyncCommand(0);
+        }
     }
     else
     {

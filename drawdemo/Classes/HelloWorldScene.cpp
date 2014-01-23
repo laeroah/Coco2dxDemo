@@ -75,17 +75,19 @@ bool HelloWorld::onTextFieldAttachWithIME(CCTextFieldTTF *pSender)
 void HelloWorld::gotoDrawPictureScene()
 {
     DrawPictureScene *drawPictureScene = DrawPictureScene::create();
-    CCDirector::sharedDirector()->replaceScene(drawPictureScene);
+    CCDirector::sharedDirector()->pushScene(drawPictureScene);
 }
 
 void HelloWorld::RunAsServer(CCObject* pSender)
 {
+    SessionManager::reset();
     SessionManager::getSharedInstance()->initServerWithDrawerName(mUserName.c_str());
     gotoDrawPictureScene();
 }
 
 void HelloWorld::RunAsClient(CCObject* pSender)
 {
+    SessionManager::reset();
    SessionManager::getSharedInstance()->initClientWithDrawerName(mUserName.c_str());
    gotoDrawPictureScene();
 }
@@ -110,7 +112,7 @@ bool HelloWorld::onTextFieldDetachWithIME(CCTextFieldTTF * pSender)
         
         CCMenu* pMenu = CCMenu::create(pServerItem,pClientItem,NULL);
         pMenu->alignItemsHorizontally();
-        
+        pMenu->alignItemsHorizontallyWithPadding(80);
         this->addChild(pMenu, 1);
         
         CCNode *pNode = this->getChildByTag(100);

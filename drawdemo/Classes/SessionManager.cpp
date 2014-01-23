@@ -8,6 +8,8 @@
 
 #include "SessionManager.h"
 #include "cocos2d.h"
+#include "Picture.h"
+#include "MTNotificationQueue.h"
 using namespace cocos2d;
 
 const static char* DRAW_SERVICE_INTERFACE_NAME = "org.alljoyn.bus.draw";
@@ -69,23 +71,25 @@ void DrawObject::DrawSignalHandler(const InterfaceDescription::Member* member, c
 void DrawObject::ReqSync(const InterfaceDescription::Member* member, Message& msg)
 {
     /* Concatenate the two input strings and reply with the result. */
-    int commandId = msg->GetArg(0)->v_int32;
-    
-    
-    
+    DrawCommand *drawCommand = new DrawCommand();
+    drawCommand->mCommandId = msg->GetArg(0)->v_int32;
     MsgArg outArg("b", 1);
     QStatus status = MethodReply(msg, &outArg, 1);
     if (ER_OK != status) {
         printf("Ping: Error sending reply.\n");
     }
+    
+    MTNotificationQueue::sharedInstance()->postNotification(REQ_SYNC_NOTIFICATION, drawCommand);
+    
 }
 
 void DrawObject::SendSync(const InterfaceDescription::Member* member, Message& msg)
 {
-    /* Concatenate the two input strings and reply with the result. */
-    int commandId = msg->GetArg(0)->v_int32;
-    qcc::String inStr2 = msg->GetArg(1)->v_string.str;
     
+    SyncCommandContent *syncCommandContent = new SyncCommandContent();
+    syncCommandContent->mCommandCount = msg->GetArg(0)->v_int32;
+    syncCommandContent->mCommandContent = msg->GetArg(1)->v_string.str;
+    MTNotificationQueue::sharedInstance()->postNotification(SYNC_COMMAND_NOTIFICATION, syncCommandContent);
     MsgArg outArg("b", 1);
     QStatus status = MethodReply(msg, &outArg, 1);
     if (ER_OK != status) {
@@ -102,7 +106,7 @@ DrawBusListener::DrawBusListener(SessionManager *sessionManager,BusAttachment *b
 
 void DrawBusListener::NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner)
 {
-    if (newOwner) {
+    if (newOwner && strcmp(newOwner, mSessionManager->getAdvertiseName().c_str())) {
         printf("NameOwnerChanged: name=%s, oldOwner=%s, newOwner=%s.\n",
                busName,
                previousOwner ? previousOwner : "<none>",
@@ -112,6 +116,9 @@ void DrawBusListener::NameOwnerChanged(const char* busName, const char* previous
 
 void DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)
 {
+    if (!strcmp(name, SessionManager::getSharedInstance()->getAdvertiseName().c_str())) {
+        return;
+    }
         const char* convName = name + strlen(NAME_PREFIX);
         printf("Discovered chat conversation: \"%s\"\n", convName);
         SessionManager::getSharedInstance()->mServiceName = name;
@@ -131,22 +138,34 @@ void DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transp
         status = mBusAttachment->SetLinkTimeout(sessionId, timeout);
         if (ER_OK == status) {
             printf("Set link timeout to %d\n", timeout);
+            if (mSessionManager->mSessionMode == ClientMode)
+            {
+                MTNotificationQueue::sharedInstance()->postNotification(JOIN_SESSION_NOTIFICATION, NULL);
+            }
         } else {
             printf("Set link timeout failed\n");
         }
-        mJoinComplete = true;
-    
 }
 
 void DrawBusListener::LostAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)
 {
-        printf("Got LostAdvertisedName for %s from transport 0x%x\n", name, transport);
+    printf("Got LostAdvertisedName for %s from transport 0x%x\n", name, transport);
+    if (mSessionManager->mSessionMode == ClientMode)
+    {
+        MTNotificationQueue::sharedInstance()->postNotification(LOST_SESSION_NOTIFICATION, NULL);
+    }
 }
 
 void DrawBusListener::SessionLost(SessionId sessionId, SessionLostReason reason)
 {
-    if (mSessionManager->mSessionMode == ClientMode) {
-        
+    printf("Got Session Lost\n");
+    mBusAttachment->EnableConcurrentCallbacks();
+    mBusAttachment->LeaveSession(mSessionManager->mSessionId);
+    mSessionManager->mSessionId = 0;
+    
+    if (mSessionManager->mSessionMode == ClientMode)
+    {
+        MTNotificationQueue::sharedInstance()->postNotification(LOST_SESSION_NOTIFICATION, NULL);
     }
 }
 
@@ -156,15 +175,24 @@ bool DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* j
             printf("Rejecting join attempt on non-chat session port %d\n", sessionPort);
             return false;
         }
-        
+    
+//        if (mSessionManager->mSessionId > 0)
+//        {
+//            //only accept one client to join the session
+//            return false;
+//        }
+    
         printf("Accepting join session request from %s (opts.proximity=%x, opts.traffic=%x, opts.transports=%x)\n",
                joiner, opts.proximity, opts.traffic, opts.transports);
+    
         return true;
 }
     
 void DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const char* joiner)
 {
     printf("SessionJoined with %s (id=%d)\n", joiner, id);
+    SessionManager::getSharedInstance()->mServiceName = joiner;
+    SessionManager::getSharedInstance()->mSessionId = id;
     mBusAttachment->EnableConcurrentCallbacks();
     uint32_t timeout = 20;
     QStatus status = mBusAttachment->SetLinkTimeout(id, timeout);
@@ -174,10 +202,7 @@ void DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const
             printf("Set link timeout failed\n");
     }
     
-    if (mSessionManager->mSessionMode == ClientMode)
-    {
-        CCNotificationCenter::sharedNotificationCenter()->postNotification(JOIN_SESSION_NOTIFICATION, NULL);
-    }
+    
 }
 
 SessionManager::SessionManager()
@@ -207,14 +232,23 @@ void    SessionManager::runProcess()
     }
 }
 
+static SessionManager *sessionManager = NULL;
+
 SessionManager *SessionManager::getSharedInstance()
 {
-    static SessionManager *sessionManager = NULL;
-    
     if (!sessionManager) {
         sessionManager = new SessionManager();
     }
     return sessionManager;
+}
+
+void SessionManager::reset()
+{
+    if (!sessionManager)
+    {
+        delete sessionManager;
+    }
+    sessionManager = NULL;
 }
 
 bool  SessionManager::initServerWithDrawerName(const char *drawerName)
@@ -307,13 +341,7 @@ bool  SessionManager::initClientWithDrawerName(const char *drawerName)
         status = CreateInterface();
     }
     
-    if (ER_OK == status) {
-        status = StartBus();
-    }
     
-    if (ER_OK == status) {
-        status = ConnectToDaemon();
-    }
     
     if (ER_OK == status) {
         mBusListener = new DrawBusListener(this,mBusAttachment);
@@ -321,11 +349,31 @@ bool  SessionManager::initClientWithDrawerName(const char *drawerName)
             status = ER_OUT_OF_MEMORY;
         }
     }
-
+    
     if (ER_OK == status) {
         mBusAttachment->RegisterBusListener(*mBusListener);
-        FindAdvertisedName();
+        
     }
+    
+    if (ER_OK == status) {
+        status = StartBus();
+    }
+    
+    mDrawObject = new DrawObject(*mBusAttachment, DRAW_SERVICE_OBJECT_PATH);
+    
+    if (!mDrawObject) {
+        status = ER_OUT_OF_MEMORY;
+    }
+    
+    if (ER_OK == status) {
+        status = RegisterBusObject(mDrawObject);
+    }
+    
+    if (ER_OK == status) {
+        status = ConnectToDaemon();
+    }
+    
+    FindAdvertisedName();
     
     return ER_OK == status;
 }
@@ -340,7 +388,7 @@ QStatus SessionManager::CreateInterface(void)
         //parameter: commandId , commandContent
         drawIntf->AddSignal("Draw", "is",  "commandId,commandContent", 0);
         drawIntf->AddMethod("ReqSync", "ii",  "b", "sessionId,commandId,returnVal", 0);
-        drawIntf->AddMethod("SendSync", "iis", "b", "commandCount,sessionId,commandsContent,returnVal", 0);
+        drawIntf->AddMethod("SendSync", "is", "b", "commandCount,commandsContent,returnVal", 0);
         drawIntf->Activate();
     } else {
         printf("Failed to create interface \"%s\" (%s)\n", DRAW_SERVICE_INTERFACE_NAME, QCC_StatusText(status));
@@ -461,13 +509,13 @@ QStatus SessionManager::CallSendSync(int commandCount,std::string &commandConten
     remoteObj.AddInterface(*alljoynTestIntf);
     
     Message reply(*mBusAttachment);
-    MsgArg inputs[3];
+    MsgArg inputs[2];
     
-    inputs[0].Set("i", mSessionId);
-    inputs[1].Set("i", commandCount);
-    inputs[2].Set("s", commandContent.c_str());
     
-    QStatus status = remoteObj.MethodCall(DRAW_SERVICE_INTERFACE_NAME, "SendSync", inputs, 3, reply, 5000);
+    inputs[0].Set("i", commandCount);
+    inputs[1].Set("s", commandContent.c_str());
+    
+    QStatus status = remoteObj.MethodCall(DRAW_SERVICE_INTERFACE_NAME, "SendSync", inputs, 2, reply, 5000);
     
     if (ER_OK == status) {
         printf("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "SendSync",

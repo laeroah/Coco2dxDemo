@@ -98,15 +98,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412140510.870737"
+            timestampString = "412202819.980008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
             landmarkType = "5">
          </BreakpointContent>
@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412140510.870737"
+            timestampString = "412195688.301567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "DrawBusListener::NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner)"
             landmarkType = "5">
          </BreakpointContent>
@@ -134,7 +134,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/CanvasLayer.cpp"
-            timestampString = "412110395.212083"
+            timestampString = "412206762.156489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -198,7 +198,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/CanvasLayer.cpp"
-            timestampString = "412110395.212083"
+            timestampString = "412206762.156489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -214,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/CanvasLayer.cpp"
-            timestampString = "412140510.870737"
+            timestampString = "412207921.121391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "CanvasLayer::ccTouchEnded(CCTouch *pTouche, CCEvent *pEvent)"
             landmarkType = "5">
          </BreakpointContent>
@@ -226,15 +226,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412140510.870737"
+            timestampString = "412195688.301567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "DrawBusListener::NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner)"
             landmarkType = "5">
          </BreakpointContent>
@@ -245,28 +245,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/DrawPictureScene.cpp"
-            timestampString = "412140510.870737"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "DrawPictureScene::init()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412140510.870737"
+            timestampString = "412202819.980008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "DrawBusListener::LostAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
             landmarkType = "5">
          </BreakpointContent>
@@ -274,16 +258,662 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* joiner, const SessionOpts&amp; opts)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412195129.952241"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "non-virtual thunk to DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412195129.952751"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412201891.249647"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "DrawObject::ReqSync(const InterfaceDescription::Member* member, Message&amp; msg)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* joiner, const SessionOpts&amp; opts)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412207672.06508"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "74">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "non-virtual thunk to DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412207672.065807"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "74">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const char* joiner)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* joiner, const SessionOpts&amp; opts)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208397.311253"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "97">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "non-virtual thunk to DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208397.311722"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "non-virtual thunk to DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208397.312149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "97">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "412140510.870737"
+            timestampString = "412202819.980008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const char* joiner)"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "DrawBusListener::SessionLost(SessionId sessionId, SessionLostReason reason)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DrawBusListener::SessionLost(unsigned int, ajn::SessionListener::SessionLostReason)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208442.24299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "161"
+                  endingLineNumber = "161"
+                  offsetFromSymbolStart = "14">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "non-virtual thunk to DrawBusListener::SessionLost(unsigned int, ajn::SessionListener::SessionLostReason)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208442.243231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "161"
+                  endingLineNumber = "161"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412202819.980008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "DrawBusListener::LostAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412202819.980008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412202819.980008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/CanvasLayer.cpp"
+            timestampString = "412207921.121391"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "CanvasLayer::sendSyncCommand(float dt)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412201891.249647"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "DrawObject::SendSync(const InterfaceDescription::Member* member, Message&amp; msg)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
+            landmarkName = "SessionManager::CallSendSync(int commandCount,std::string &amp;commandContent)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
+            landmarkName = "SessionManager::CallSendSync(int commandCount,std::string &amp;commandContent)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallSendSync(int, std::string&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205859.242046"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "502"
+                  endingLineNumber = "502"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallSendSync(int, std::string&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205859.242427"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "502"
+                  endingLineNumber = "502"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallSendSync(int, std::string&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205859.242831"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "502"
+                  endingLineNumber = "502"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallSendSync(int, std::string&amp;)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205859.243243"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "502"
+                  endingLineNumber = "502"
+                  offsetFromSymbolStart = "453">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
+            landmarkName = "SessionManager::CallReqSync(int commandId)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallReqSync(int)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205946.433798"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "529"
+                  endingLineNumber = "529"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallReqSync(int)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205946.43414"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "529"
+                  endingLineNumber = "529"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallReqSync(int)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205946.434473"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "529"
+                  endingLineNumber = "529"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallReqSync(int)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412205946.434813"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "529"
+                  endingLineNumber = "529"
+                  offsetFromSymbolStart = "451">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/DrawPictureScene.cpp"
+            timestampString = "412206009.399769"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "DrawPictureScene::syncCommandNotification(CCObject* obj)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/Picture.cpp"
+            timestampString = "412206018.159737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "Picture::setSyncCommandsContent(int commandsCount , string &amp;commandsContent)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/CanvasLayer.cpp"
+            timestampString = "412206106.587938"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "CanvasLayer::draw()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/CanvasLayer.cpp"
+            timestampString = "412206202.712311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "CanvasLayer::draw()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/CanvasLayer.cpp"
+            timestampString = "412206255.09124"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "CanvasLayer::draw()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/CanvasLayer.cpp"
+            timestampString = "412206361.055305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "CanvasLayer::draw()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SessionManager.cpp"
+            timestampString = "412208355.101021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "SessionManager::CallReqSync(int commandId)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallReqSync(int)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208442.243751"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "550"
+                  endingLineNumber = "550"
+                  offsetFromSymbolStart = "415">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallReqSync(int)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208442.243983"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "550"
+                  endingLineNumber = "550"
+                  offsetFromSymbolStart = "425">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SessionManager::CallReqSync(int)"
+                  moduleName = "drawdemo"
+                  urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
+                  timestampString = "412208442.244205"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "550"
+                  endingLineNumber = "550"
+                  offsetFromSymbolStart = "487">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/Picture.cpp"
+            timestampString = "412207745.826902"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "Picture::getSyncCommandsContent(int lastSendCommandId, int maxCount, int &amp;lastCommandId, string &amp;commandsContent, int &amp;commandsCount, bool &amp;hasMore)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/CanvasLayer.cpp"
+            timestampString = "412207914.348523"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "CanvasLayer::sendSyncCommand(float dt)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

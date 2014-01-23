@@ -20,7 +20,8 @@ class CanvasLayer : public cocos2d::CCLayerColor
 private:
     Picture *mCurrentPicture;
     CCPoint *mLastPoint;
-    
+    int     mLastSendCommandId;
+    bool    mHasRecvReqSync;
     void    releaseLastPoint();
 public:
     ~CanvasLayer();
@@ -34,7 +35,10 @@ public:
     virtual void ccTouchEnded(CCTouch  *pTouches, CCEvent *pEvent);
     virtual void registerWithTouchDispatcher();
     
+    void    setHasRecvReqSync(bool hasRecvReqSync){mHasRecvReqSync = hasRecvReqSync;};
     Picture *getCurrentPicture(){ return mCurrentPicture;}
+    void    setLastSendCommandId(int commandId){mLastSendCommandId = commandId;};
+    void    sendSyncCommand(float dt);
     CREATE_FUNC(CanvasLayer);
 };
 

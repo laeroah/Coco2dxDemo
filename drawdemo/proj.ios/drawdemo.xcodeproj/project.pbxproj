@@ -245,6 +245,14 @@
 		F4094F7918900E9C00670668 /* CanvasLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4094F7718900E9C00670668 /* CanvasLayer.cpp */; };
 		F4094F7C18900EB000670668 /* DrawPictureScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4094F7A18900EB000670668 /* DrawPictureScene.cpp */; };
 		F4342B38188F00EB00342BCC /* CursorTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4342B36188F00EB00342BCC /* CursorTextField.cpp */; };
+		F447106A1891B15F00E8F35F /* MTNotificationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */; };
+		F4C743DF189162A500276AFF /* json_internalarray.inl in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D1189162A500276AFF /* json_internalarray.inl */; };
+		F4C743E0189162A500276AFF /* json_internalmap.inl in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D2189162A500276AFF /* json_internalmap.inl */; };
+		F4C743E1189162A500276AFF /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C743D3189162A500276AFF /* json_reader.cpp */; };
+		F4C743E2189162A500276AFF /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C743D4189162A500276AFF /* json_value.cpp */; };
+		F4C743E3189162A500276AFF /* json_valueiterator.inl in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D5189162A500276AFF /* json_valueiterator.inl */; };
+		F4C743E4189162A500276AFF /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C743D6189162A500276AFF /* json_writer.cpp */; };
+		F4C743E5189162A500276AFF /* sconscript in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D7189162A500276AFF /* sconscript */; };
 		F4C7AAC8188DB8A800314F8C /* SessionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C7AAC6188DB8A800314F8C /* SessionManager.cpp */; };
 		F4C7AACA188DBF9600314F8C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C7AAC9188DBF9600314F8C /* SystemConfiguration.framework */; };
 		F4C7AACC188DBF9E00314F8C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C7AACB188DBF9E00314F8C /* libstdc++.dylib */; };
@@ -748,6 +756,24 @@
 		F4094F7B18900EB000670668 /* DrawPictureScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawPictureScene.h; path = ../Classes/DrawPictureScene.h; sourceTree = "<group>"; };
 		F4342B36188F00EB00342BCC /* CursorTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CursorTextField.cpp; path = ../Classes/CursorTextField.cpp; sourceTree = "<group>"; };
 		F4342B37188F00EB00342BCC /* CursorTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorTextField.h; path = ../Classes/CursorTextField.h; sourceTree = "<group>"; };
+		F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MTNotificationQueue.cpp; path = ../Classes/MTNotificationQueue.cpp; sourceTree = "<group>"; };
+		F44710691891B15F00E8F35F /* MTNotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTNotificationQueue.h; path = ../Classes/MTNotificationQueue.h; sourceTree = "<group>"; };
+		F4C743C3189162A500276AFF /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		F4C743C4189162A500276AFF /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		F4C743C5189162A500276AFF /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		F4C743C6189162A500276AFF /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
+		F4C743C7189162A500276AFF /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		F4C743C8189162A500276AFF /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		F4C743C9189162A500276AFF /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
+		F4C743CA189162A500276AFF /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		F4C743D0189162A500276AFF /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
+		F4C743D1189162A500276AFF /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
+		F4C743D2189162A500276AFF /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
+		F4C743D3189162A500276AFF /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
+		F4C743D4189162A500276AFF /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
+		F4C743D5189162A500276AFF /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
+		F4C743D6189162A500276AFF /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		F4C743D7189162A500276AFF /* sconscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sconscript; sourceTree = "<group>"; };
 		F4C7AAC6188DB8A800314F8C /* SessionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SessionManager.cpp; path = ../Classes/SessionManager.cpp; sourceTree = "<group>"; };
 		F4C7AAC7188DB8A800314F8C /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionManager.h; path = ../Classes/SessionManager.h; sourceTree = "<group>"; };
 		F4C7AAC9188DBF9600314F8C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1272,6 +1298,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4C743BF189162A500276AFF /* thirdparty */,
 				F4342B35188F00CF00342BCC /* Utility */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
@@ -1763,8 +1790,74 @@
 			children = (
 				F4342B36188F00EB00342BCC /* CursorTextField.cpp */,
 				F4342B37188F00EB00342BCC /* CursorTextField.h */,
+				F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */,
+				F44710691891B15F00E8F35F /* MTNotificationQueue.h */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		F4C743BF189162A500276AFF /* thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				F4C743C0189162A500276AFF /* jsoncpp */,
+			);
+			name = thirdparty;
+			path = ../Classes/thirdparty;
+			sourceTree = "<group>";
+		};
+		F4C743C0189162A500276AFF /* jsoncpp */ = {
+			isa = PBXGroup;
+			children = (
+				F4C743C1189162A500276AFF /* include */,
+				F4C743CB189162A500276AFF /* src */,
+			);
+			path = jsoncpp;
+			sourceTree = "<group>";
+		};
+		F4C743C1189162A500276AFF /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F4C743C2189162A500276AFF /* json */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		F4C743C2189162A500276AFF /* json */ = {
+			isa = PBXGroup;
+			children = (
+				F4C743C3189162A500276AFF /* autolink.h */,
+				F4C743C4189162A500276AFF /* config.h */,
+				F4C743C5189162A500276AFF /* features.h */,
+				F4C743C6189162A500276AFF /* forwards.h */,
+				F4C743C7189162A500276AFF /* json.h */,
+				F4C743C8189162A500276AFF /* reader.h */,
+				F4C743C9189162A500276AFF /* value.h */,
+				F4C743CA189162A500276AFF /* writer.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		F4C743CB189162A500276AFF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F4C743CF189162A500276AFF /* lib_json */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F4C743CF189162A500276AFF /* lib_json */ = {
+			isa = PBXGroup;
+			children = (
+				F4C743D0189162A500276AFF /* json_batchallocator.h */,
+				F4C743D1189162A500276AFF /* json_internalarray.inl */,
+				F4C743D2189162A500276AFF /* json_internalmap.inl */,
+				F4C743D3189162A500276AFF /* json_reader.cpp */,
+				F4C743D4189162A500276AFF /* json_value.cpp */,
+				F4C743D5189162A500276AFF /* json_valueiterator.inl */,
+				F4C743D6189162A500276AFF /* json_writer.cpp */,
+				F4C743D7189162A500276AFF /* sconscript */,
+			);
+			path = lib_json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1837,11 +1930,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
+				F4C743E3189162A500276AFF /* json_valueiterator.inl in Resources */,
+				F4C743E5189162A500276AFF /* sconscript in Resources */,
 				D4EF949A15BD2D8B00D803EB /* Icon-57.png in Resources */,
 				D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */,
+				F4C743DF189162A500276AFF /* json_internalarray.inl in Resources */,
 				D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */,
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
+				F4C743E0189162A500276AFF /* json_internalmap.inl in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
@@ -1869,6 +1966,7 @@
 				15A3D9071682F7D5002FB0C5 /* b2ChainShape.cpp in Sources */,
 				15A3D9081682F7D5002FB0C5 /* b2CircleShape.cpp in Sources */,
 				15A3D9091682F7D5002FB0C5 /* b2EdgeShape.cpp in Sources */,
+				F447106A1891B15F00E8F35F /* MTNotificationQueue.cpp in Sources */,
 				15A3D90A1682F7D5002FB0C5 /* b2PolygonShape.cpp in Sources */,
 				15A3D90B1682F7D5002FB0C5 /* b2BlockAllocator.cpp in Sources */,
 				15A3D90C1682F7D5002FB0C5 /* b2Draw.cpp in Sources */,
@@ -1887,6 +1985,7 @@
 				15A3D9161682F7D5002FB0C5 /* b2WorldCallbacks.cpp in Sources */,
 				15A3D9171682F7D5002FB0C5 /* b2ChainAndCircleContact.cpp in Sources */,
 				15A3D9181682F7D5002FB0C5 /* b2ChainAndPolygonContact.cpp in Sources */,
+				F4C743E1189162A500276AFF /* json_reader.cpp in Sources */,
 				375BD5111868454E0024609E /* CCActionManager.cpp in Sources */,
 				F4342B38188F00EB00342BCC /* CursorTextField.cpp in Sources */,
 				15A3D9191682F7D5002FB0C5 /* b2CircleContact.cpp in Sources */,
@@ -2002,6 +2101,8 @@
 				1AC3624B16D4A1E8000847F2 /* main.m in Sources */,
 				1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */,
 				1A8F3B6E175E05DA00049216 /* Animation.cpp in Sources */,
+				F4C743E2189162A500276AFF /* json_value.cpp in Sources */,
+				F4C743E4189162A500276AFF /* json_writer.cpp in Sources */,
 				1A8F3B6F175E05DA00049216 /* AnimationState.cpp in Sources */,
 				1A8F3B70175E05DA00049216 /* AnimationStateData.cpp in Sources */,
 				1A8F3B71175E05DA00049216 /* Atlas.cpp in Sources */,
@@ -2094,7 +2195,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Wang (A39T4W623E)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2121,6 +2222,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/include\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios\"",
+					"\"$(SRCROOT)/../Classes/thirdparty/jsoncpp/include\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios/Simulation\"",
 				);
 				INFOPLIST_FILE = Info.plist;
@@ -2161,7 +2263,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Wang (A39T4W623E)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Wang (A39T4W623E)";
 				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2188,6 +2290,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios/Simulation\"",
+					"\"$(SRCROOT)/../Classes/thirdparty/jsoncpp/include\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;

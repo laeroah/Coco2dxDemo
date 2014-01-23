@@ -15,6 +15,8 @@ using namespace cocos2d;
 
 class DrawPictureScene : public cocos2d::CCScene
 {
+private:
+    int mLastSendCommandId;
 public:
     DrawPictureScene():_layer(NULL) {};
     ~DrawPictureScene();
@@ -22,8 +24,10 @@ public:
     bool init();
     void joinSessionNotification(CCObject* obj);
     void reqSyncNotification(CCObject* obj);
+    void lostSessionNotification(CCObject* obj);
+    void syncCommandNotification(CCObject* obj);
+    void postMessage(CCObject* obj);
     CREATE_FUNC(DrawPictureScene);
-    
     CC_SYNTHESIZE_READONLY(CanvasLayer*, _layer, Layer);
 };
 

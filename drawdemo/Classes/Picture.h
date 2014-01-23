@@ -36,6 +36,16 @@ public:
     CREATE_FUNC(DrawCommand);
 };
 
+class SyncCommandContent : public CCObject
+{
+public:
+    int   mCommandCount;
+    std::string mCommandContent;
+    bool init();
+    
+    CREATE_FUNC(SyncCommandContent);
+};
+
 class Picture : public CCObject
 {
 private:
@@ -49,6 +59,8 @@ public:
     void    addNewCommand(DrawCommandType commandType, CCPoint *fromPoint , CCPoint *toPoint);
     void    clearAllCommands();
     int     getLastCommandId(){ return mCommandId;};
+    bool    getSyncCommandsContent(int lastSendCommandId, int maxCount, int &lastCommandId, string &commandsContent, int &commandsCount, bool &hasMore);
+    bool    setSyncCommandsContent(int commandsCount , string &commandsContent);
     CREATE_FUNC(Picture);
 };
 

@@ -26,7 +26,9 @@
 #include <signal.h>
 
 #define JOIN_SESSION_NOTIFICATION "JoinSession"
+#define LOST_SESSION_NOTIFICATION "LostSession"
 #define REQ_SYNC_NOTIFICATION "ReqSync"
+#define SYNC_COMMAND_NOTIFICATION "SyncCommandContent"
 
 using namespace ajn;
 
@@ -55,8 +57,6 @@ private:
     BusAttachment *mBusAttachment;
     SessionManager *mSessionManager;
 public:
-    bool mJoinComplete;
-public:
     DrawBusListener(SessionManager *sessionManager, BusAttachment *busAttachment);
     void FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix);
     void LostAdvertisedName(const char* name, TransportMask transport, const char* namePrefix);
@@ -70,6 +70,7 @@ class SessionManager
 {
     public:
     static SessionManager *getSharedInstance();
+    static void reset();
     SessionManager();
     ~SessionManager();
     bool  initServerWithDrawerName(const char *drawerName);
@@ -89,7 +90,7 @@ class SessionManager
     
     //Session mode
     SessionMode mSessionMode;
-    
+    qcc::String& getAdvertiseName(){ return mAdvertisedName;};
     private:
         qcc::String mAdvertisedName;
         BusAttachment *mBusAttachment;
