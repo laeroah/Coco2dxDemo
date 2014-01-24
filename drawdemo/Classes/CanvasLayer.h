@@ -23,6 +23,7 @@ private:
     int     mLastSendCommandId;
     bool    mHasRecvReqSync;
     void    releaseLastPoint();
+    unsigned long long mLastSendSyncCommandTime;
 public:
     ~CanvasLayer();
     virtual bool init();
@@ -39,6 +40,9 @@ public:
     Picture *getCurrentPicture(){ return mCurrentPicture;}
     void    setLastSendCommandId(int commandId){mLastSendCommandId = commandId;};
     void    sendSyncCommand(float dt);
+    void    sendTempSyncCommand(float dt);
+    void    setSyncCommandsContent(int commandCount, std::string &commandContent);
+
     CREATE_FUNC(CanvasLayer);
 };
 

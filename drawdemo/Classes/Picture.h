@@ -56,10 +56,13 @@ public:
     bool init();
     
     CCArray *mCommandList;
-    void    addNewCommand(DrawCommandType commandType, CCPoint *fromPoint , CCPoint *toPoint);
+    CCArray *mTempCommandList;
+    void    addNewCommand(DrawCommandType commandType, CCPoint &fromPoint , CCPoint &toPoint);
+    void    addTempNewCommand(DrawCommandType commandType, CCPoint &fromPoint , CCPoint &toPoint);
     void    clearAllCommands();
     int     getLastCommandId(){ return mCommandId;};
     bool    getSyncCommandsContent(int lastSendCommandId, int maxCount, int &lastCommandId, string &commandsContent, int &commandsCount, bool &hasMore);
+    bool    getSyncTempCommandsContent(int maxCount, string &commandsContent, int &commandsCount, bool &hasMore);
     bool    setSyncCommandsContent(int commandsCount , string &commandsContent);
     CREATE_FUNC(Picture);
 };

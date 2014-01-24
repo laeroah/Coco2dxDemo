@@ -1,4 +1,4 @@
-//
+    //
 //  CanvasLayer.cpp
 //  drawdemo
 //
@@ -7,6 +7,7 @@
 //
 
 #include "CanvasLayer.h"
+#include "TimeUtil.h"
 
 bool CanvasLayer::init()
 {
@@ -18,6 +19,8 @@ bool CanvasLayer::init()
     mCurrentPicture = PictureManager::getSharedInstance()->createPicture();
     mCurrentPicture->retain();
     this->setTouchEnabled(true);
+    mLastSendCommandId = 0;
+    mLastSendSyncCommandTime = 0;
     return true;
 	
 }
@@ -91,13 +94,15 @@ void CanvasLayer::ccTouchMoved(CCTouch  *pTouche, CCEvent *pEvent)
     
     if (SessionManager::getSharedInstance()->mSessionMode == ServerMode)
     {
-        mCurrentPicture->addNewCommand(DRAW_LINE,mLastPoint,p);
+        mCurrentPicture->addNewCommand(DRAW_LINE,*mLastPoint,*p);
         if (mHasRecvReqSync) {
             sendSyncCommand(0);
         }
     }
     else
     {
+        mCurrentPicture->addTempNewCommand(DRAW_LINE,*mLastPoint,*p);
+        sendTempSyncCommand(0);
     }
     releaseLastPoint();
     mLastPoint = p;
@@ -109,12 +114,49 @@ void CanvasLayer::sendSyncCommand(float dt)
     int commandsCount;
     bool hasMore;
     int lastSendCommandId;
+    
     if(getCurrentPicture()->getSyncCommandsContent(mLastSendCommandId, 40 , lastSendCommandId, commandContent, commandsCount, hasMore))
     {
+        unsigned long long curtime = TimeUtil::getCurrentTime();
+        
+        if (curtime < mLastSendSyncCommandTime + 50) {
+            this->unschedule(schedule_selector(CanvasLayer::sendSyncCommand));
+            float delayTime = (float)(mLastSendSyncCommandTime + 50 - curtime);
+            delayTime /= 1000;
+            delayTime = delayTime > 0.05 ? 0.05 : delayTime;
+            printf("mLastSendSyncCommandTime %lld %lld delayTime %f\n",mLastSendSyncCommandTime, curtime , delayTime);
+            this->schedule(schedule_selector(CanvasLayer::sendSyncCommand), delayTime ,1,0);
+            return;
+        }
+        
+        printf("send sync %d %s\n",commandsCount,
+               commandContent.c_str()
+               );
+        mLastSendSyncCommandTime = curtime;
         mLastSendCommandId = lastSendCommandId;
         SessionManager::getSharedInstance()->CallSendSync(commandsCount, commandContent);
         if (hasMore) {
             this->schedule(schedule_selector(CanvasLayer::sendSyncCommand),0.1,1,0);
+        }
+    }
+    else
+    {
+        printf("no new command found %d\n",mLastSendCommandId
+               );
+
+    }
+}
+
+void CanvasLayer::sendTempSyncCommand(float dt)
+{
+    string commandContent;
+    int commandsCount;
+    bool hasMore;
+    if(getCurrentPicture()->getSyncTempCommandsContent(40 , commandContent, commandsCount, hasMore))
+    {
+        SessionManager::getSharedInstance()->CallSendSync(commandsCount, commandContent);
+        if (hasMore) {
+            this->schedule(schedule_selector(CanvasLayer::sendTempSyncCommand),0.1,1,0);
         }
     }
 }
@@ -131,14 +173,15 @@ void CanvasLayer::ccTouchEnded(CCTouch  *pTouche, CCEvent *pEvent)
     
     if (SessionManager::getSharedInstance()->mSessionMode == ServerMode)
     {
-        mCurrentPicture->addNewCommand(DRAW_LINE,mLastPoint,p);
+        mCurrentPicture->addNewCommand(DRAW_LINE,*mLastPoint,*p);
         if (mHasRecvReqSync) {
             sendSyncCommand(0);
         }
     }
     else
     {
-        
+        mCurrentPicture->addTempNewCommand(DRAW_LINE,*mLastPoint,*p);
+        sendTempSyncCommand(0);
     }
     
     releaseLastPoint();
@@ -147,4 +190,15 @@ void CanvasLayer::ccTouchEnded(CCTouch  *pTouche, CCEvent *pEvent)
 void CanvasLayer::registerWithTouchDispatcher()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, this->getTouchPriority(), true);
+}
+
+void    CanvasLayer::setSyncCommandsContent(int commandCount, std::string &commandContent)
+{
+    getCurrentPicture()->setSyncCommandsContent(commandCount, commandContent);
+    if (SessionManager::getSharedInstance()->mSessionMode == ServerMode)
+    {
+        if (mHasRecvReqSync) {
+            sendSyncCommand(0);
+        }
+    }
 }

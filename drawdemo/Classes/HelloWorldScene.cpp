@@ -55,7 +55,7 @@ bool HelloWorld::init()
 
     /////////////////////////////
     // 3. add your codes below...
-    CursorTextField *userName = CursorTextField::textFieldWithPlaceHolder("Input your name", "Arial", 34);
+    CursorTextField *userName = CursorTextField::textFieldWithPlaceHolder("Input your name", "Arial", 20);
     userName->setTag(100);
     userName->setPosition(ccp(visibleSize.width/2,visibleSize.height/2+80));
     userName->setColor(ccc3(255, 255, 255));
@@ -100,7 +100,7 @@ bool HelloWorld::onTextFieldDetachWithIME(CCTextFieldTTF * pSender)
         mUserName = pSender->getString();
         
         CCMenuItemFont::setFontName("Helvetica");
-        CCMenuItemFont::setFontSize(35);
+        CCMenuItemFont::setFontSize(15);
         CCMenuItemFont *pServerItem = CCMenuItemFont::create(
                                                         "RunAsServer",
                                                         this,

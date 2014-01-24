@@ -246,6 +246,7 @@
 		F4094F7C18900EB000670668 /* DrawPictureScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4094F7A18900EB000670668 /* DrawPictureScene.cpp */; };
 		F4342B38188F00EB00342BCC /* CursorTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4342B36188F00EB00342BCC /* CursorTextField.cpp */; };
 		F447106A1891B15F00E8F35F /* MTNotificationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */; };
+		F4AC55BC1892C59600BF00AE /* TimeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */; };
 		F4C743DF189162A500276AFF /* json_internalarray.inl in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D1189162A500276AFF /* json_internalarray.inl */; };
 		F4C743E0189162A500276AFF /* json_internalmap.inl in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D2189162A500276AFF /* json_internalmap.inl */; };
 		F4C743E1189162A500276AFF /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C743D3189162A500276AFF /* json_reader.cpp */; };
@@ -758,6 +759,8 @@
 		F4342B37188F00EB00342BCC /* CursorTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorTextField.h; path = ../Classes/CursorTextField.h; sourceTree = "<group>"; };
 		F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MTNotificationQueue.cpp; path = ../Classes/MTNotificationQueue.cpp; sourceTree = "<group>"; };
 		F44710691891B15F00E8F35F /* MTNotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTNotificationQueue.h; path = ../Classes/MTNotificationQueue.h; sourceTree = "<group>"; };
+		F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeUtil.cpp; path = ../Classes/TimeUtil.cpp; sourceTree = "<group>"; };
+		F4AC55BB1892C59600BF00AE /* TimeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeUtil.h; path = ../Classes/TimeUtil.h; sourceTree = "<group>"; };
 		F4C743C3189162A500276AFF /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		F4C743C4189162A500276AFF /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		F4C743C5189162A500276AFF /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
@@ -1792,6 +1795,8 @@
 				F4342B37188F00EB00342BCC /* CursorTextField.h */,
 				F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */,
 				F44710691891B15F00E8F35F /* MTNotificationQueue.h */,
+				F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */,
+				F4AC55BB1892C59600BF00AE /* TimeUtil.h */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1956,6 +1961,7 @@
 			files = (
 				15A3D8FF1682F7D5002FB0C5 /* b2BroadPhase.cpp in Sources */,
 				15A3D9001682F7D5002FB0C5 /* b2CollideCircle.cpp in Sources */,
+				F4AC55BC1892C59600BF00AE /* TimeUtil.cpp in Sources */,
 				F4094F7618900E6A00670668 /* Picture.cpp in Sources */,
 				15A3D9011682F7D5002FB0C5 /* b2CollideEdge.cpp in Sources */,
 				15A3D9021682F7D5002FB0C5 /* b2CollidePolygon.cpp in Sources */,

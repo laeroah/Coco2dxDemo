@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Picture::setSyncCommandsContent(int, std::string&amp;):Picture.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "commandsContent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SessionManager::CallSendSync(int, std::string&amp;):SessionManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "mServiceName.c_str()">
+            </PersistentString>
+            <PersistentString
+               value = "mServiceName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CanvasLayer::sendSyncCommand(float):CanvasLayer.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "mLastSendCommandId">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;) [inlined]:SessionManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "joiner">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Picture::getSyncCommandsContent(int, int, int&amp;, std::string&amp;, int&amp;, bool&amp;):Picture.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "lastSendCommandId">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SessionManager::CallReqSync(int):SessionManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "mServiceName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -41,6 +41,7 @@ typedef enum
 /* Bus object */
 class DrawObject : public BusObject {
 public:
+    BusAttachment *mBusAttachment;
     DrawObject(BusAttachment& bus, const char* path);
     QStatus sendDrawSignal(const SessionId sessionId, const int commandId , const char* commandContent);
     void DrawSignalHandler(const InterfaceDescription::Member* member, const char* srcPath, Message& msg);

@@ -20,7 +20,7 @@ const static SessionPort  DRAW_PORT = 30;
 DrawObject::DrawObject(BusAttachment& bus, const char* path) : BusObject(path), drawSignalMember(NULL)
 {
     QStatus status;
-        
+    mBusAttachment = &bus;
     /* Add the chat interface to this object */
     const InterfaceDescription* drawIntf = bus.GetInterface(DRAW_SERVICE_INTERFACE_NAME);
     AddInterface(*drawIntf);
@@ -70,9 +70,10 @@ void DrawObject::DrawSignalHandler(const InterfaceDescription::Member* member, c
 
 void DrawObject::ReqSync(const InterfaceDescription::Member* member, Message& msg)
 {
+    mBusAttachment->EnableConcurrentCallbacks();
     /* Concatenate the two input strings and reply with the result. */
     DrawCommand *drawCommand = new DrawCommand();
-    drawCommand->mCommandId = msg->GetArg(0)->v_int32;
+    drawCommand->mCommandId = msg->GetArg(1)->v_int32;
     MsgArg outArg("b", 1);
     QStatus status = MethodReply(msg, &outArg, 1);
     if (ER_OK != status) {
@@ -85,16 +86,19 @@ void DrawObject::ReqSync(const InterfaceDescription::Member* member, Message& ms
 
 void DrawObject::SendSync(const InterfaceDescription::Member* member, Message& msg)
 {
-    
+    mBusAttachment->EnableConcurrentCallbacks();
     SyncCommandContent *syncCommandContent = new SyncCommandContent();
     syncCommandContent->mCommandCount = msg->GetArg(0)->v_int32;
     syncCommandContent->mCommandContent = msg->GetArg(1)->v_string.str;
-    MTNotificationQueue::sharedInstance()->postNotification(SYNC_COMMAND_NOTIFICATION, syncCommandContent);
     MsgArg outArg("b", 1);
     QStatus status = MethodReply(msg, &outArg, 1);
     if (ER_OK != status) {
         printf("Ping: Error sending reply.\n");
     }
+    
+    printf("recv sync command %s",syncCommandContent->mCommandContent.c_str());
+    
+    MTNotificationQueue::sharedInstance()->postNotification(SYNC_COMMAND_NOTIFICATION, syncCommandContent);
 }
 
 
@@ -134,7 +138,7 @@ void DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transp
             printf("JoinSession failed (status=%s)\n", QCC_StatusText(status));
         }
         SessionManager::getSharedInstance()->mSessionId = sessionId;
-        uint32_t timeout = 20;
+        uint32_t timeout = 40;
         status = mBusAttachment->SetLinkTimeout(sessionId, timeout);
         if (ER_OK == status) {
             printf("Set link timeout to %d\n", timeout);
@@ -194,15 +198,13 @@ void DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const
     SessionManager::getSharedInstance()->mServiceName = joiner;
     SessionManager::getSharedInstance()->mSessionId = id;
     mBusAttachment->EnableConcurrentCallbacks();
-    uint32_t timeout = 20;
+    uint32_t timeout = 40;
     QStatus status = mBusAttachment->SetLinkTimeout(id, timeout);
     if (ER_OK == status) {
             printf("Set link timeout to %d\n", timeout);
     } else {
             printf("Set link timeout failed\n");
     }
-    
-    
 }
 
 SessionManager::SessionManager()
@@ -373,6 +375,28 @@ bool  SessionManager::initClientWithDrawerName(const char *drawerName)
         status = ConnectToDaemon();
     }
     
+    
+    const TransportMask SERVICE_TRANSPORT_TYPE = TRANSPORT_ANY;
+    /*
+     * Advertise this service on the bus.
+     * There are three steps to advertising this service on the bus.
+     * 1) Request a well-known name that will be used by the client to discover
+     *    this service.
+     * 2) Create a session.
+     * 3) Advertise the well-known name.
+     */
+    if (ER_OK == status) {
+        status = RequestName();
+    }
+    
+    if (ER_OK == status) {
+        status = CreateSession(SERVICE_TRANSPORT_TYPE);
+    }
+    
+    if (ER_OK == status) {
+        status = AdvertiseName(SERVICE_TRANSPORT_TYPE);
+    }
+    
     FindAdvertisedName();
     
     return ER_OK == status;
@@ -502,6 +526,7 @@ QStatus SessionManager::FindAdvertisedName(void)
 
 QStatus SessionManager::CallSendSync(int commandCount,std::string &commandContent)
 {
+     mBusAttachment->EnableConcurrentCallbacks();
     ProxyBusObject remoteObj(*mBusAttachment, mServiceName.c_str(), DRAW_SERVICE_OBJECT_PATH, mSessionId);
     const InterfaceDescription* alljoynTestIntf = mBusAttachment->GetInterface(DRAW_SERVICE_INTERFACE_NAME);
     
@@ -521,7 +546,7 @@ QStatus SessionManager::CallSendSync(int commandCount,std::string &commandConten
         printf("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "SendSync",
                DRAW_SERVICE_OBJECT_PATH, reply->GetArg(0)->v_bool);
     } else {
-        printf("MethodCall on '%s.%s' failed.", DRAW_SERVICE_INTERFACE_NAME, "SendSync");
+        printf("MethodCall on '%s.%s' failed. %s", DRAW_SERVICE_INTERFACE_NAME, "SendSync",QCC_StatusText(status));
     }
     
     return status;
@@ -529,6 +554,7 @@ QStatus SessionManager::CallSendSync(int commandCount,std::string &commandConten
 
 QStatus SessionManager::CallReqSync(int commandId)
 {
+    mBusAttachment->EnableConcurrentCallbacks();
     ProxyBusObject remoteObj(*mBusAttachment, mServiceName.c_str(), DRAW_SERVICE_OBJECT_PATH, mSessionId);
     const InterfaceDescription* alljoynTestIntf = mBusAttachment->GetInterface(DRAW_SERVICE_INTERFACE_NAME);
     
@@ -547,7 +573,7 @@ QStatus SessionManager::CallReqSync(int commandId)
         printf("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "ReqSync",
                DRAW_SERVICE_OBJECT_PATH, reply->GetArg(0)->v_bool);
     } else {
-        printf("MethodCall on '%s.%s' failed.", DRAW_SERVICE_INTERFACE_NAME, "ReqSync");
+        printf("MethodCall on '%s.%s' failed. %s", DRAW_SERVICE_INTERFACE_NAME, "ReqSync",QCC_StatusText(status));
     }
     
     return status;

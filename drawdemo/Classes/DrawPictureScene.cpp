@@ -25,12 +25,9 @@ bool DrawPictureScene::init()
         CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::reqSyncNotification), REQ_SYNC_NOTIFICATION, NULL);
         
         CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::lostSessionNotification), LOST_SESSION_NOTIFICATION, NULL);
-        if (SessionManager::getSharedInstance()->mSessionMode == ClientMode)
-        {
-            CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::syncCommandNotification), SYNC_COMMAND_NOTIFICATION, NULL);
+        CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::syncCommandNotification), SYNC_COMMAND_NOTIFICATION, NULL);
             
-        }
-		return true;
+  		return true;
 	}
 	else
 	{
@@ -57,12 +54,8 @@ void DrawPictureScene::joinSessionNotification(CCObject* obj)
 
 void DrawPictureScene::syncCommandNotification(CCObject* obj)
 {
-    if (SessionManager::getSharedInstance()->mSessionMode == ServerMode) {
-        return;
-    }
-    
     SyncCommandContent *syncCommandContent = (SyncCommandContent*)obj;
-    _layer->getCurrentPicture()->setSyncCommandsContent(syncCommandContent->mCommandCount, syncCommandContent->mCommandContent);
+    _layer->setSyncCommandsContent(syncCommandContent->mCommandCount, syncCommandContent->mCommandContent);
     delete syncCommandContent;
 }
 
@@ -82,6 +75,7 @@ void DrawPictureScene::reqSyncNotification(CCObject* obj)
     }
     
     DrawCommand *drawCommand = (DrawCommand*)obj;
+    printf("recv sync command id = %d",drawCommand->mCommandId);
     //send sync command
     _layer->setLastSendCommandId(drawCommand->mCommandId);
     _layer->sendSyncCommand(0);
@@ -98,13 +92,9 @@ DrawPictureScene::~DrawPictureScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this,JOIN_SESSION_NOTIFICATION);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this,REQ_SYNC_NOTIFICATION);
-     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, LOST_SESSION_NOTIFICATION);
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, LOST_SESSION_NOTIFICATION);
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, SYNC_COMMAND_NOTIFICATION);
     
-    if (SessionManager::getSharedInstance()->mSessionMode == ClientMode)
-    {
-        CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, SYNC_COMMAND_NOTIFICATION);
-    }
-
 	if (_layer)
 	{
 		_layer->release();
