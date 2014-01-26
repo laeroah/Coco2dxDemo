@@ -46,6 +46,34 @@ public:
     CREATE_FUNC(SyncCommandContent);
 };
 
+
+class Player : public cocos2d::CCObject
+{
+public:
+    std::string mPlayerName;
+    std::string mplayerWellKnownName;
+    CCObject* copyWithZone(CCZone *pZone)
+    {
+        CCZone *pNewZone = NULL;
+        Player *pRet = NULL;
+        if (pZone && pZone->m_pCopyObject)
+        {
+            pRet = (Player*)(pZone->m_pCopyObject);
+        }
+        else
+        {
+            pRet = new Player();
+            pNewZone = new CCZone(pRet);
+        }
+        //copy member data
+        pRet->mPlayerName = mPlayerName;
+        pRet->mplayerWellKnownName = mplayerWellKnownName;
+        CC_SAFE_DELETE(pNewZone);
+        return (CCObject*)pRet;
+    }
+};
+
+
 class Picture : public CCObject
 {
 private:

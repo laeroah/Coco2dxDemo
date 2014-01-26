@@ -8,10 +8,13 @@
 
 #include "CanvasLayer.h"
 #include "TimeUtil.h"
+#include "PlayerListLayer.h"
+
+
 
 bool CanvasLayer::init()
 {
-	if ( !CCLayerColor::initWithColor( ccc4(255,255,255,255) ) )
+	if ( !GeneralColorLayer::initWithColor( ccc4(255,255,255,255) ) )
 	{
         return false;
     }
@@ -201,4 +204,13 @@ void    CanvasLayer::setSyncCommandsContent(int commandCount, std::string &comma
             sendSyncCommand(0);
         }
     }
+}
+
+void    CanvasLayer::resetCurrentPicture()
+{
+    CC_SAFE_RELEASE(mCurrentPicture);
+    mCurrentPicture = PictureManager::getSharedInstance()->createPicture();
+    mCurrentPicture->retain();
+    mLastSendCommandId = 0;
+    mLastSendSyncCommandTime = 0;
 }

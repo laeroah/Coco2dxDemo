@@ -55,7 +55,7 @@ bool HelloWorld::init()
 
     /////////////////////////////
     // 3. add your codes below...
-    CursorTextField *userName = CursorTextField::textFieldWithPlaceHolder("Input your name", "Arial", 20);
+    CursorTextField *userName = CursorTextField::textFieldWithPlaceHolder("Please input your name", "Arial", 20);
     userName->setTag(100);
     userName->setPosition(ccp(visibleSize.width/2,visibleSize.height/2+80));
     userName->setColor(ccc3(255, 255, 255));
@@ -85,42 +85,13 @@ void HelloWorld::RunAsServer(CCObject* pSender)
     gotoDrawPictureScene();
 }
 
-void HelloWorld::RunAsClient(CCObject* pSender)
-{
-    SessionManager::reset();
-   SessionManager::getSharedInstance()->initClientWithDrawerName(mUserName.c_str());
-   gotoDrawPictureScene();
-}
-
 bool HelloWorld::onTextFieldDetachWithIME(CCTextFieldTTF * pSender)
 {
     //Initialize session manager
     if (pSender->getString() != NULL && strlen(pSender->cocos2d::CCLabelTTF::getString()) > 0)
     {
         mUserName = pSender->getString();
-        
-        CCMenuItemFont::setFontName("Helvetica");
-        CCMenuItemFont::setFontSize(15);
-        CCMenuItemFont *pServerItem = CCMenuItemFont::create(
-                                                        "RunAsServer",
-                                                        this,
-                                                        menu_selector(HelloWorld::RunAsServer) );
-        CCMenuItemFont *pClientItem = CCMenuItemFont::create(
-                                                         "RunAsClient",
-                                                         this,
-                                                         menu_selector(HelloWorld::RunAsClient) );
-        
-        CCMenu* pMenu = CCMenu::create(pServerItem,pClientItem,NULL);
-        pMenu->alignItemsHorizontally();
-        pMenu->alignItemsHorizontallyWithPadding(80);
-        this->addChild(pMenu, 1);
-        
-        CCNode *pNode = this->getChildByTag(100);
-        if (pNode) {
-            pNode->removeFromParentAndCleanup(true);
-        }
-
-        
+        RunAsServer(NULL);
         return false;
     }
 

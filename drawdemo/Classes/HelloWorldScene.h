@@ -27,7 +27,6 @@ public:
     
     void gotoDrawPictureScene();
     void RunAsServer(CCObject* pSender);
-    void RunAsClient(CCObject* pSender);
     
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);

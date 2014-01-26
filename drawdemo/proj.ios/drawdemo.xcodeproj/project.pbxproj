@@ -247,6 +247,10 @@
 		F4342B38188F00EB00342BCC /* CursorTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4342B36188F00EB00342BCC /* CursorTextField.cpp */; };
 		F447106A1891B15F00E8F35F /* MTNotificationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */; };
 		F4AC55BC1892C59600BF00AE /* TimeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */; };
+		F4AC55CB1893053400BF00AE /* TintMessageLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55C91893053400BF00AE /* TintMessageLayer.cpp */; };
+		F4AC55CF18930B9C00BF00AE /* GeneralColorLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55CD18930B9C00BF00AE /* GeneralColorLayer.cpp */; };
+		F4AC55D318938E3E00BF00AE /* MessageUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55D118938E3E00BF00AE /* MessageUtil.cpp */; };
+		F4AC55D5189398BD00BF00AE /* Players.png in Resources */ = {isa = PBXBuildFile; fileRef = F4AC55D4189398BD00BF00AE /* Players.png */; };
 		F4C743DF189162A500276AFF /* json_internalarray.inl in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D1189162A500276AFF /* json_internalarray.inl */; };
 		F4C743E0189162A500276AFF /* json_internalmap.inl in Resources */ = {isa = PBXBuildFile; fileRef = F4C743D2189162A500276AFF /* json_internalmap.inl */; };
 		F4C743E1189162A500276AFF /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C743D3189162A500276AFF /* json_reader.cpp */; };
@@ -257,6 +261,10 @@
 		F4C7AAC8188DB8A800314F8C /* SessionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C7AAC6188DB8A800314F8C /* SessionManager.cpp */; };
 		F4C7AACA188DBF9600314F8C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C7AAC9188DBF9600314F8C /* SystemConfiguration.framework */; };
 		F4C7AACC188DBF9E00314F8C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C7AACB188DBF9E00314F8C /* libstdc++.dylib */; };
+		F4F102161894169E002EB413 /* PlayerListLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4F102141894169E002EB413 /* PlayerListLayer.cpp */; };
+		F4F1021818941A0B002EB413 /* Close.png in Resources */ = {isa = PBXBuildFile; fileRef = F4F1021718941A0B002EB413 /* Close.png */; };
+		F4F1021B1894255E002EB413 /* ModelDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4F102191894255E002EB413 /* ModelDialog.cpp */; };
+		F4F1021D18944FDE002EB413 /* BackGround.png in Resources */ = {isa = PBXBuildFile; fileRef = F4F1021C18944FDE002EB413 /* BackGround.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -761,6 +769,13 @@
 		F44710691891B15F00E8F35F /* MTNotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTNotificationQueue.h; path = ../Classes/MTNotificationQueue.h; sourceTree = "<group>"; };
 		F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeUtil.cpp; path = ../Classes/TimeUtil.cpp; sourceTree = "<group>"; };
 		F4AC55BB1892C59600BF00AE /* TimeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeUtil.h; path = ../Classes/TimeUtil.h; sourceTree = "<group>"; };
+		F4AC55C91893053400BF00AE /* TintMessageLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TintMessageLayer.cpp; path = ../Classes/TintMessageLayer.cpp; sourceTree = "<group>"; };
+		F4AC55CA1893053400BF00AE /* TintMessageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TintMessageLayer.h; path = ../Classes/TintMessageLayer.h; sourceTree = "<group>"; };
+		F4AC55CD18930B9C00BF00AE /* GeneralColorLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GeneralColorLayer.cpp; path = ../Classes/GeneralColorLayer.cpp; sourceTree = "<group>"; };
+		F4AC55CE18930B9C00BF00AE /* GeneralColorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralColorLayer.h; path = ../Classes/GeneralColorLayer.h; sourceTree = "<group>"; };
+		F4AC55D118938E3E00BF00AE /* MessageUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageUtil.cpp; path = ../Classes/MessageUtil.cpp; sourceTree = "<group>"; };
+		F4AC55D218938E3E00BF00AE /* MessageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageUtil.h; path = ../Classes/MessageUtil.h; sourceTree = "<group>"; };
+		F4AC55D4189398BD00BF00AE /* Players.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Players.png; sourceTree = "<group>"; };
 		F4C743C3189162A500276AFF /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		F4C743C4189162A500276AFF /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		F4C743C5189162A500276AFF /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
@@ -781,6 +796,12 @@
 		F4C7AAC7188DB8A800314F8C /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionManager.h; path = ../Classes/SessionManager.h; sourceTree = "<group>"; };
 		F4C7AAC9188DBF9600314F8C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F4C7AACB188DBF9E00314F8C /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		F4F102141894169E002EB413 /* PlayerListLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerListLayer.cpp; path = ../Classes/PlayerListLayer.cpp; sourceTree = "<group>"; };
+		F4F102151894169E002EB413 /* PlayerListLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerListLayer.h; path = ../Classes/PlayerListLayer.h; sourceTree = "<group>"; };
+		F4F1021718941A0B002EB413 /* Close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Close.png; sourceTree = "<group>"; };
+		F4F102191894255E002EB413 /* ModelDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelDialog.cpp; path = ../Classes/ModelDialog.cpp; sourceTree = "<group>"; };
+		F4F1021A1894255E002EB413 /* ModelDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelDialog.h; path = ../Classes/ModelDialog.h; sourceTree = "<group>"; };
+		F4F1021C18944FDE002EB413 /* BackGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackGround.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1317,6 +1338,12 @@
 				F4094F7818900E9C00670668 /* CanvasLayer.h */,
 				F4094F7A18900EB000670668 /* DrawPictureScene.cpp */,
 				F4094F7B18900EB000670668 /* DrawPictureScene.h */,
+				F4AC55C91893053400BF00AE /* TintMessageLayer.cpp */,
+				F4AC55CA1893053400BF00AE /* TintMessageLayer.h */,
+				F4AC55CD18930B9C00BF00AE /* GeneralColorLayer.cpp */,
+				F4AC55CE18930B9C00BF00AE /* GeneralColorLayer.h */,
+				F4F102141894169E002EB413 /* PlayerListLayer.cpp */,
+				F4F102151894169E002EB413 /* PlayerListLayer.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1773,6 +1800,9 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F4F1021C18944FDE002EB413 /* BackGround.png */,
+				F4F1021718941A0B002EB413 /* Close.png */,
+				F4AC55D4189398BD00BF00AE /* Players.png */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
@@ -1797,6 +1827,10 @@
 				F44710691891B15F00E8F35F /* MTNotificationQueue.h */,
 				F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */,
 				F4AC55BB1892C59600BF00AE /* TimeUtil.h */,
+				F4AC55D118938E3E00BF00AE /* MessageUtil.cpp */,
+				F4AC55D218938E3E00BF00AE /* MessageUtil.h */,
+				F4F102191894255E002EB413 /* ModelDialog.cpp */,
+				F4F1021A1894255E002EB413 /* ModelDialog.h */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1934,6 +1968,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F1021818941A0B002EB413 /* Close.png in Resources */,
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
 				F4C743E3189162A500276AFF /* json_valueiterator.inl in Resources */,
 				F4C743E5189162A500276AFF /* sconscript in Resources */,
@@ -1946,8 +1981,10 @@
 				F4C743E0189162A500276AFF /* json_internalmap.inl in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,
+				F4F1021D18944FDE002EB413 /* BackGround.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
+				F4AC55D5189398BD00BF00AE /* Players.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1994,6 +2031,7 @@
 				F4C743E1189162A500276AFF /* json_reader.cpp in Sources */,
 				375BD5111868454E0024609E /* CCActionManager.cpp in Sources */,
 				F4342B38188F00EB00342BCC /* CursorTextField.cpp in Sources */,
+				F4F1021B1894255E002EB413 /* ModelDialog.cpp in Sources */,
 				15A3D9191682F7D5002FB0C5 /* b2CircleContact.cpp in Sources */,
 				15A3D91A1682F7D5002FB0C5 /* b2Contact.cpp in Sources */,
 				15A3D91B1682F7D5002FB0C5 /* b2ContactSolver.cpp in Sources */,
@@ -2035,6 +2073,7 @@
 				15A3D9A81682F7F9002FB0C5 /* cpHashSet.c in Sources */,
 				15A3D9A91682F7F9002FB0C5 /* cpPolyShape.c in Sources */,
 				15A3D9AA1682F7F9002FB0C5 /* cpShape.c in Sources */,
+				F4AC55D318938E3E00BF00AE /* MessageUtil.cpp in Sources */,
 				15A3D9AB1682F7F9002FB0C5 /* cpSpace.c in Sources */,
 				15A3D9AC1682F7F9002FB0C5 /* cpSpaceComponent.c in Sources */,
 				15A3D9AD1682F7F9002FB0C5 /* cpSpaceHash.c in Sources */,
@@ -2045,6 +2084,7 @@
 				15A3D9B21682F7F9002FB0C5 /* cpVect.c in Sources */,
 				15A3DA311682F826002FB0C5 /* CCBAnimationManager.cpp in Sources */,
 				15A3DA321682F826002FB0C5 /* CCBFileLoader.cpp in Sources */,
+				F4AC55CF18930B9C00BF00AE /* GeneralColorLayer.cpp in Sources */,
 				15A3DA331682F826002FB0C5 /* CCBKeyframe.cpp in Sources */,
 				15A3DA341682F826002FB0C5 /* CCBReader.cpp in Sources */,
 				15A3DA351682F826002FB0C5 /* CCBSequence.cpp in Sources */,
@@ -2127,6 +2167,7 @@
 				1A8F3B7D175E05DA00049216 /* SkeletonData.cpp in Sources */,
 				1A8F3B7E175E05DA00049216 /* SkeletonJson.cpp in Sources */,
 				1A8F3B7F175E05DA00049216 /* Skin.cpp in Sources */,
+				F4F102161894169E002EB413 /* PlayerListLayer.cpp in Sources */,
 				1A8F3B80175E05DA00049216 /* Slot.cpp in Sources */,
 				1A8F3B81175E05DA00049216 /* SlotData.cpp in Sources */,
 				1A8F3B82175E05DA00049216 /* spine-cocos2dx.cpp in Sources */,
@@ -2154,6 +2195,7 @@
 				379BB9AC17F03F3700829B88 /* CCUtilMath.cpp in Sources */,
 				379BB9AD17F03F3700829B88 /* CCComAttribute.cpp in Sources */,
 				379BB9AE17F03F3700829B88 /* CCComAudio.cpp in Sources */,
+				F4AC55CB1893053400BF00AE /* TintMessageLayer.cpp in Sources */,
 				379BB9AF17F03F3700829B88 /* CCComController.cpp in Sources */,
 				379BB9B017F03F3700829B88 /* CCComRender.cpp in Sources */,
 				379BB9B117F03F3700829B88 /* CCInputDelegate.cpp in Sources */,

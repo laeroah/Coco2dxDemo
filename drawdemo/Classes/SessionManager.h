@@ -24,11 +24,14 @@
 #include <cstdio>
 #include <cstdlib>
 #include <signal.h>
-
+#include "cocos2d.h"
 #define JOIN_SESSION_NOTIFICATION "JoinSession"
 #define LOST_SESSION_NOTIFICATION "LostSession"
 #define REQ_SYNC_NOTIFICATION "ReqSync"
 #define SYNC_COMMAND_NOTIFICATION "SyncCommandContent"
+#define SYSTEM_MESSAGE "systemMessage"
+#define PLAYER_FOUND_NOTIFICATION "playerFound"
+#define PLAYER_UNFOUND_NOTIFICATION "playerUnFound"
 
 using namespace ajn;
 
@@ -75,15 +78,19 @@ class SessionManager
     SessionManager();
     ~SessionManager();
     bool  initServerWithDrawerName(const char *drawerName);
-    bool  initClientWithDrawerName(const char *drawerName);
     QStatus RegisterBusObject(DrawObject *drawObject);
     QStatus ConnectToDaemon(void);
     QStatus RequestName(void);
     QStatus CreateSession(TransportMask mask);
     QStatus AdvertiseName(TransportMask mask);
+    QStatus CancelAdvertiseName(TransportMask mask);
+    QStatus CancelFindAdvertisedName(void);
     QStatus FindAdvertisedName(void);
     QStatus CallReqSync(int commandId);
     QStatus CallSendSync(int commandCount,std::string &commandContent);
+    QStatus JoinSession(const char *wellKnownName);
+    QStatus leaveSession();
+    bool isInitialized(){ return mIsInitialized; };
     void    runProcess();
     
     qcc::String mServiceName;
@@ -101,7 +108,7 @@ class SessionManager
     DrawObject *mDrawObject;
     qcc::String mUserName;
     
-    
+    bool mIsInitialized;
 };
 
 #endif /* defined(__drawdemo__SessionManager__) */

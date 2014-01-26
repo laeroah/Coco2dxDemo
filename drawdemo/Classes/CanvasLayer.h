@@ -12,10 +12,11 @@
 #include "cocos2d.h"
 #include "PictureManager.h"
 #include "SessionManager.h"
+#include "GeneralColorLayer.h"
 
 using namespace cocos2d;
 
-class CanvasLayer : public cocos2d::CCLayerColor
+class CanvasLayer : public GeneralColorLayer
 {
 private:
     Picture *mCurrentPicture;
@@ -42,7 +43,7 @@ public:
     void    sendSyncCommand(float dt);
     void    sendTempSyncCommand(float dt);
     void    setSyncCommandsContent(int commandCount, std::string &commandContent);
-
+    void    resetCurrentPicture();
     CREATE_FUNC(CanvasLayer);
 };
 

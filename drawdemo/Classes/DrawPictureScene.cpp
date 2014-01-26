@@ -9,6 +9,39 @@
 #include "DrawPictureScene.h"
 #include "SessionManager.h"
 #include "MTNotificationQueue.h"
+#include "PlayerListLayer.h"
+
+void DrawPictureScene::buttonCallback(CCNode *sender, void *param)
+{
+    if (param != NULL)
+    {
+        _layer->resetCurrentPicture();
+    }
+    this->removeChildByTag(200);
+}
+
+void DrawPictureScene::ShowNearPlayers(CCObject *sender)
+{
+    if (!SessionManager::getSharedInstance()->isInitialized())
+    {
+        return;
+    }
+    
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    
+    CCLayerColor *layerColor = CCLayerColor::create(ccc4(0,0,0,150));
+    this->addChild(layerColor,10,200);
+    
+    PlayerListLayer* pl = PlayerListLayer::create("BackGround.png");
+    pl->setContentSize(CCSizeMake(250, 250));
+    pl->setPosition(ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2));
+    pl->setTitle("Nearby Players",16);
+    pl->setCallbackFunc(this, callfuncND_selector(DrawPictureScene::buttonCallback));
+    pl->addButton("Close.png", "Close.png", "", 250,250, 0);
+    pl->setPlayerList(mPlayersArray);
+    this->addChild(pl,11);
+}
 
 bool DrawPictureScene::init()
 {
@@ -18,6 +51,27 @@ bool DrawPictureScene::init()
 		this->_layer->retain();
 		this->addChild(_layer);
         
+        mPlayersArray = CCArray::create();
+        mPlayersArray->retain();
+        //create menu
+        CCMenuItemImage *pNearPlayerItems = CCMenuItemImage::create(
+                                                                    "Players.png",
+                                                                    "Players.png",
+                                                                    this,
+                                                                    menu_selector(DrawPictureScene::ShowNearPlayers));
+        
+        CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+        CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+        
+        pNearPlayerItems->setPosition(ccp(origin.x + visibleSize.width - pNearPlayerItems->getContentSize().width/2 - 10,
+                                          origin.y + visibleSize.height - pNearPlayerItems->getContentSize().height/2 - 10));
+        // Create a menu with the "close" menu item, it's an auto release object.
+        CCMenu* pMenu = CCMenu::create(pNearPlayerItems, NULL);
+        pMenu->setPosition(CCPointZero);
+
+        // Add the menu to HelloWorld layer as a child layer.
+        this->addChild(pMenu, 1);
+        
         this->schedule(schedule_selector(DrawPictureScene::checkSessionManager),2,kCCRepeatForever,2);
         this->schedule(schedule_selector(DrawPictureScene::postMessage),0.1,kCCRepeatForever,0);
 		
@@ -26,6 +80,10 @@ bool DrawPictureScene::init()
         
         CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::lostSessionNotification), LOST_SESSION_NOTIFICATION, NULL);
         CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::syncCommandNotification), SYNC_COMMAND_NOTIFICATION, NULL);
+        
+        CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::playerFoundNotification), PLAYER_FOUND_NOTIFICATION, NULL);
+        CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::playerUnFoundNotification), PLAYER_UNFOUND_NOTIFICATION, NULL);
+
             
   		return true;
 	}
@@ -38,6 +96,36 @@ bool DrawPictureScene::init()
 void DrawPictureScene::postMessage(CCObject* obj)
 {
     MTNotificationQueue::sharedInstance()->postNotifications(0.1);
+}
+
+
+void DrawPictureScene::playerFoundNotification(CCObject* obj)
+{
+    CCObject* item;
+    Player *newPlayer = (Player*)obj;
+    
+    CCARRAY_FOREACH(mPlayersArray,item)
+    {
+        Player *player = (Player*)item;
+        if (player->mplayerWellKnownName.compare(newPlayer->mplayerWellKnownName)== 0) {
+            return;
+        }
+    }
+    mPlayersArray->addObject(obj);
+}
+
+void DrawPictureScene::playerUnFoundNotification(CCObject* obj)
+{
+    CCObject* item;
+    Player *newPlayer = (Player*)obj;
+    CCARRAY_FOREACH(mPlayersArray,item)
+    {
+        Player *player = (Player*)item;
+        if (player->mplayerWellKnownName.compare(newPlayer->mplayerWellKnownName)== 0) {
+            mPlayersArray->removeObject(item);
+            return;
+        }
+    }
 }
 
 void DrawPictureScene::joinSessionNotification(CCObject* obj)
@@ -95,9 +183,15 @@ DrawPictureScene::~DrawPictureScene()
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, LOST_SESSION_NOTIFICATION);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, SYNC_COMMAND_NOTIFICATION);
     
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, PLAYER_FOUND_NOTIFICATION);
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, PLAYER_UNFOUND_NOTIFICATION);
+    
+    
 	if (_layer)
 	{
 		_layer->release();
 		_layer = NULL;
 	}
+    
+    CC_SAFE_RELEASE(mPlayersArray);
 }

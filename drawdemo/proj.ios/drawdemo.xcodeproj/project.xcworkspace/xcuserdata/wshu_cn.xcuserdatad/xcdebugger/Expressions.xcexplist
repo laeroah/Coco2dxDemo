@@ -3,10 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Picture::setSyncCommandsContent(int, std::string&amp;):Picture.cpp">
+         contextName = "DrawBusListener::FoundAdvertisedName(char const*, unsigned short, char const*):SessionManager.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "commandsContent">
+               value = "name">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,18 +22,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CanvasLayer::sendSyncCommand(float):CanvasLayer.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "mLastSendCommandId">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "DrawBusListener::AcceptSessionJoiner(unsigned short, char const*, ajn::SessionOpts const&amp;) [inlined]:SessionManager.cpp">
          <PersistentStrings>
             <PersistentString
                value = "joiner">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Picture::setSyncCommandsContent(int, std::string&amp;):Picture.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "commandsContent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SessionManager::CallReqSync(int):SessionManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "mServiceName">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -46,10 +54,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SessionManager::CallReqSync(int):SessionManager.cpp">
+         contextName = "CanvasLayer::sendSyncCommand(float):CanvasLayer.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "mServiceName">
+               value = "mLastSendCommandId">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
