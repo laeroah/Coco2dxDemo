@@ -27,20 +27,39 @@ void DrawPictureScene::ShowNearPlayers(CCObject *sender)
         return;
     }
     
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    CCSize contentSize = mNearPlayerItems->getContentSize();
     
-    CCLayerColor *layerColor = CCLayerColor::create(ccc4(0,0,0,150));
-    this->addChild(layerColor,10,200);
+    if (mWaitingForJoin) {
+        CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+        CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     
-    PlayerListLayer* pl = PlayerListLayer::create("BackGround.png");
-    pl->setContentSize(CCSizeMake(250, 250));
-    pl->setPosition(ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2));
-    pl->setTitle("Nearby Players",16);
-    pl->setCallbackFunc(this, callfuncND_selector(DrawPictureScene::buttonCallback));
-    pl->addButton("Close.png", "Close.png", "", 250,250, 0);
-    pl->setPlayerList(mPlayersArray);
-    this->addChild(pl,11);
+        CCLayerColor *layerColor = CCLayerColor::create(ccc4(0,0,0,150));
+        this->addChild(layerColor,10,200);
+    
+        PlayerListLayer* pl = PlayerListLayer::create("BackGround.png");
+        pl->setContentSize(CCSizeMake(250, 250));
+        pl->setPosition(ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2));
+        pl->setTitle("Nearby Players",16);
+        pl->setCallbackFunc(this, callfuncND_selector(DrawPictureScene::buttonCallback));
+        pl->addButton("Close.png", "Close.png", "", 245,245, 0);
+        pl->setPlayerList(mPlayersArray);
+        this->addChild(pl,11);
+        mWaitingForJoin = false;
+        
+        
+        
+        mNearPlayerItems->setNormalSpriteFrame(CCSpriteFrame::create("Door.png", CCRectMake(0,0,contentSize.width,contentSize.height)));
+        mNearPlayerItems->setDisabledSpriteFrame(CCSpriteFrame::create("Door.png", CCRectMake(0,0,contentSize.width,contentSize.height)));
+    }
+    else
+    {
+        mWaitingForJoin = true;
+        mNearPlayerItems->setNormalSpriteFrame(CCSpriteFrame::create("Players.png", CCRectMake(0,0,contentSize.width,contentSize.height)));
+        mNearPlayerItems->setDisabledSpriteFrame(CCSpriteFrame::create("Players.png", CCRectMake(0,0,contentSize.width,contentSize.height)));
+        
+        _layer->resetCurrentPicture();
+        SessionManager::getSharedInstance()->leaveSession();
+    }
 }
 
 bool DrawPictureScene::init()
@@ -54,21 +73,21 @@ bool DrawPictureScene::init()
         mPlayersArray = CCArray::create();
         mPlayersArray->retain();
         //create menu
-        CCMenuItemImage *pNearPlayerItems = CCMenuItemImage::create(
+        mNearPlayerItems = CCMenuItemImage::create(
                                                                     "Players.png",
                                                                     "Players.png",
                                                                     this,
                                                                     menu_selector(DrawPictureScene::ShowNearPlayers));
-        
+        mNearPlayerItems->retain();
         CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
         CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-        
-        pNearPlayerItems->setPosition(ccp(origin.x + visibleSize.width - pNearPlayerItems->getContentSize().width/2 - 10,
-                                          origin.y + visibleSize.height - pNearPlayerItems->getContentSize().height/2 - 10));
+        mNearPlayerItems->setPosition(ccp(origin.x + visibleSize.width - mNearPlayerItems->getContentSize().width/2 - 10,
+                                          origin.y + visibleSize.height - mNearPlayerItems->getContentSize().height/2 - 10));
         // Create a menu with the "close" menu item, it's an auto release object.
-        CCMenu* pMenu = CCMenu::create(pNearPlayerItems, NULL);
+        CCMenu* pMenu = CCMenu::create(mNearPlayerItems, NULL);
         pMenu->setPosition(CCPointZero);
-
+        
+        mWaitingForJoin = true;
         // Add the menu to HelloWorld layer as a child layer.
         this->addChild(pMenu, 1);
         
@@ -84,13 +103,23 @@ bool DrawPictureScene::init()
         CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::playerFoundNotification), PLAYER_FOUND_NOTIFICATION, NULL);
         CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(DrawPictureScene::playerUnFoundNotification), PLAYER_UNFOUND_NOTIFICATION, NULL);
 
-            
+        
+        this->schedule(schedule_selector(DrawPictureScene::discoveryPlayers),5,kCCRepeatForever,0);
+        
   		return true;
 	}
 	else
 	{
 		return false;
 	}
+}
+
+void DrawPictureScene::discoveryPlayers(float dt)
+{
+    if (SessionManager::getSharedInstance()->isInitialized())
+    {
+        SessionManager::getSharedInstance()->FindAdvertisedName();
+    }
 }
 
 void DrawPictureScene::postMessage(CCObject* obj)
@@ -163,7 +192,6 @@ void DrawPictureScene::reqSyncNotification(CCObject* obj)
     }
     
     DrawCommand *drawCommand = (DrawCommand*)obj;
-    printf("recv sync command id = %d",drawCommand->mCommandId);
     //send sync command
     _layer->setLastSendCommandId(drawCommand->mCommandId);
     _layer->sendSyncCommand(0);

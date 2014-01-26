@@ -245,6 +245,7 @@
 		F4094F7918900E9C00670668 /* CanvasLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4094F7718900E9C00670668 /* CanvasLayer.cpp */; };
 		F4094F7C18900EB000670668 /* DrawPictureScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4094F7A18900EB000670668 /* DrawPictureScene.cpp */; };
 		F4342B38188F00EB00342BCC /* CursorTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4342B36188F00EB00342BCC /* CursorTextField.cpp */; };
+		F43B6AF21895A48E000CF641 /* Door.png in Resources */ = {isa = PBXBuildFile; fileRef = F43B6AF11895A48E000CF641 /* Door.png */; };
 		F447106A1891B15F00E8F35F /* MTNotificationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */; };
 		F4AC55BC1892C59600BF00AE /* TimeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */; };
 		F4AC55CB1893053400BF00AE /* TintMessageLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55C91893053400BF00AE /* TintMessageLayer.cpp */; };
@@ -765,6 +766,7 @@
 		F4094F7B18900EB000670668 /* DrawPictureScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawPictureScene.h; path = ../Classes/DrawPictureScene.h; sourceTree = "<group>"; };
 		F4342B36188F00EB00342BCC /* CursorTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CursorTextField.cpp; path = ../Classes/CursorTextField.cpp; sourceTree = "<group>"; };
 		F4342B37188F00EB00342BCC /* CursorTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CursorTextField.h; path = ../Classes/CursorTextField.h; sourceTree = "<group>"; };
+		F43B6AF11895A48E000CF641 /* Door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Door.png; sourceTree = "<group>"; };
 		F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MTNotificationQueue.cpp; path = ../Classes/MTNotificationQueue.cpp; sourceTree = "<group>"; };
 		F44710691891B15F00E8F35F /* MTNotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTNotificationQueue.h; path = ../Classes/MTNotificationQueue.h; sourceTree = "<group>"; };
 		F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeUtil.cpp; path = ../Classes/TimeUtil.cpp; sourceTree = "<group>"; };
@@ -1800,6 +1802,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F43B6AF11895A48E000CF641 /* Door.png */,
 				F4F1021C18944FDE002EB413 /* BackGround.png */,
 				F4F1021718941A0B002EB413 /* Close.png */,
 				F4AC55D4189398BD00BF00AE /* Players.png */,
@@ -1978,6 +1981,7 @@
 				D4EF949E15BD2D9600D803EB /* Icon-72.png in Resources */,
 				D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */,
 				D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */,
+				F43B6AF21895A48E000CF641 /* Door.png in Resources */,
 				F4C743E0189162A500276AFF /* json_internalmap.inl in Resources */,
 				D446FD6E16102124000ADA7B /* Default@2x.png in Resources */,
 				15A3D9961682F7F9002FB0C5 /* CMakeLists.txt in Resources */,

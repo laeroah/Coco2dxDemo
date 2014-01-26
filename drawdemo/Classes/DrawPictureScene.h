@@ -18,6 +18,8 @@ class DrawPictureScene : public cocos2d::CCScene
 private:
     int mLastSendCommandId;
     CCArray *mPlayersArray;
+    bool mWaitingForJoin;
+    CCMenuItemImage *mNearPlayerItems;
 public:
     DrawPictureScene():_layer(NULL) {};
     ~DrawPictureScene();
@@ -32,6 +34,7 @@ public:
     void buttonCallback(CCNode *sender, void *param);
     void playerFoundNotification(CCObject* obj);
     void playerUnFoundNotification(CCObject* obj);
+    void discoveryPlayers(float dt);
     CREATE_FUNC(DrawPictureScene);
     CC_SYNTHESIZE_READONLY(CanvasLayer*, _layer, Layer);
 };

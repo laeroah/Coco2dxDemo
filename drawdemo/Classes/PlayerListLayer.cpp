@@ -79,10 +79,11 @@ CCTableViewCell* PlayerListLayer::tableCellAtIndex(cocos2d::extension::CCTableVi
     if (!cell) {
         cell = new CCTableViewCell();
         cell->autorelease();
-        CCLabelTTF *label = CCLabelTTF::create(player->mPlayerName.c_str(), "Arial", 15);
+        CCLabelTTF *label = CCLabelTTF::create(player->mPlayerName.c_str(), "Helvetica-BoldOblique", 15);
         label->setAnchorPoint(CCPointZero);
         label->setTag(123);
-        label->cocos2d::CCNode::setPosition(5, 5);
+        label->setColor(ccc3(231, 202, 232));
+        label->cocos2d::CCNode::setPosition(20, 5);
         cell->addChild(label,13);
     }
     else

@@ -67,7 +67,7 @@ void ModelDialog::setTitle(const char *title, int fontsize){
 }
 
 void ModelDialog::setContentText(const char *text, int fontsize, int padding, int paddingTop){
-    CCLabelTTF* ltf = CCLabelTTF::create(text, "", fontsize);
+    CCLabelTTF* ltf = CCLabelTTF::create(text, "Thonburi-Bold", fontsize);
     setLabelContentText(ltf);
     m_contentPadding = padding;
     m_contentPaddingTop = paddingTop;

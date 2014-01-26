@@ -132,13 +132,11 @@ void CanvasLayer::sendSyncCommand(float dt)
             return;
         }
         
-        printf("send sync %d %s\n",commandsCount,
-               commandContent.c_str()
-               );
         mLastSendSyncCommandTime = curtime;
         mLastSendCommandId = lastSendCommandId;
         SessionManager::getSharedInstance()->CallSendSync(commandsCount, commandContent);
         if (hasMore) {
+            this->unschedule(schedule_selector(CanvasLayer::sendSyncCommand));
             this->schedule(schedule_selector(CanvasLayer::sendSyncCommand),0.1,1,0);
         }
     }
@@ -159,6 +157,7 @@ void CanvasLayer::sendTempSyncCommand(float dt)
     {
         SessionManager::getSharedInstance()->CallSendSync(commandsCount, commandContent);
         if (hasMore) {
+            this->unschedule(schedule_selector(CanvasLayer::sendTempSyncCommand));
             this->schedule(schedule_selector(CanvasLayer::sendTempSyncCommand),0.1,1,0);
         }
     }

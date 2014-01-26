@@ -18,6 +18,7 @@ const static char* DRAW_SERVICE_INTERFACE_NAME = "org.alljoyn.bus.draw";
 const static char* NAME_PREFIX = "org.alljoyn.bus.draw.";
 const static char* DRAW_SERVICE_OBJECT_PATH = "/drawService";
 const static SessionPort  DRAW_PORT = 30;
+const static TransportMask SERVICE_TRANSPORT_TYPE = TRANSPORT_ANY;
 
 DrawObject::DrawObject(BusAttachment& bus, const char* path) : BusObject(path), drawSignalMember(NULL)
 {
@@ -292,7 +293,7 @@ bool  SessionManager::initServerWithDrawerName(const char *drawerName)
         status = ConnectToDaemon();
     }
     
-     const TransportMask SERVICE_TRANSPORT_TYPE = TRANSPORT_ANY;
+    
     /*
      * Advertise this service on the bus.
      * There are three steps to advertising this service on the bus.
@@ -532,7 +533,10 @@ QStatus SessionManager::CallReqSync(int commandId)
 QStatus SessionManager::JoinSession(const char *wellKnownName)
 {
     if (mSessionMode == ServerMode)
+    {
+        CancelAdvertiseName(SERVICE_TRANSPORT_TYPE);
         mSessionMode = ClientMode;
+    }
     else
     {
         //leave old session first
@@ -580,6 +584,8 @@ QStatus SessionManager::leaveSession()
     }
     
     mSessionMode = ServerMode;
+    
+    AdvertiseName(SERVICE_TRANSPORT_TYPE);
     
     return status;
 }

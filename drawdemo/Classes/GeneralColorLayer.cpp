@@ -72,10 +72,10 @@ void GeneralColorLayer::showMessageLayer()
 {
     isShowingMessage = true;
     CCSize contentSize = mMessageLayer->getContentSize();
-    CCMoveTo* moveup = CCMoveTo::create(0.5f,ccp(0,contentSize.height));
-    CCMoveTo* movedown = CCMoveTo::create(0.5f,ccp(0,-contentSize.height - 4));
+    CCMoveTo* moveup = CCMoveTo::create(0.2f,ccp(0,contentSize.height));
+    CCMoveTo* movedown = CCMoveTo::create(0.2f,ccp(0,-contentSize.height - 4));
     
-    CCActionInterval* interval= CCActionInterval::create(2);
+    CCActionInterval* interval= CCActionInterval::create(1.5);
     CCCallFunc* finishCallFunc=CCCallFunc::create(this,callfunc_selector(GeneralColorLayer::finishCallFunc));
     CCSequence* sequence=CCSequence::create(moveup,interval,movedown,finishCallFunc,NULL);
     mMessageLayer->runAction(sequence);
