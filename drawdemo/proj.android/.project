@@ -38,11 +38,15 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildArguments</key>
-					<value>-C ${ProjDirPath} NDK_MODULE_PATH=${COCOS2DX_ROOT}:${COCOS2DX_ROOT}/cocos2dx/platform/third_party/android/prebuilt -j2</value>
+					<value>${ProjDirPath}/build_native.sh</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildCommand</key>
-					<value>${ProjDirPath}/ANDROID_NDK/ndk-build</value>
+					<value>bash</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.buildLocation</key>
+					<value>${ProjDirPath}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
@@ -102,17 +106,17 @@
 		<link>
 			<name>Classes</name>
 			<type>2</type>
-			<location>COCOS2DX/projects/drawdemo/Classes</location>
+			<location>/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes</location>
 		</link>
 		<link>
-			<name>cocos2dx</name>
+			<name>Resources</name>
 			<type>2</type>
-			<locationURI>COCOS2DX/cocos2dx</locationURI>
+			<location>/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Resources</location>
 		</link>
 		<link>
 			<name>extensions</name>
 			<type>2</type>
-			<location>COCOS2DX/extensions</location>
+			<locationURI>COCOS2DX/extensions</locationURI>
 		</link>
 		<link>
 			<name>scripting</name>

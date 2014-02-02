@@ -12,7 +12,9 @@
 #include "MTNotificationQueue.h"
 #include "MessageUtil.h"
 
+
 using namespace cocos2d;
+
 
 const static char* DRAW_SERVICE_INTERFACE_NAME = "org.alljoyn.bus.draw";
 const static char* NAME_PREFIX = "org.alljoyn.bus.draw.";
@@ -476,7 +478,7 @@ QStatus SessionManager::CancelFindAdvertisedName(void)
 }
 
 
-QStatus SessionManager::CallSendSync(int commandCount,std::string &commandContent)
+QStatus SessionManager::CallSendSync(int commandCount,string &commandContent)
 {
      mBusAttachment->EnableConcurrentCallbacks();
     ProxyBusObject remoteObj(*mBusAttachment, mServiceName.c_str(), DRAW_SERVICE_OBJECT_PATH, mSessionId);

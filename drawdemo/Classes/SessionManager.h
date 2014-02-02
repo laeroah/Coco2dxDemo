@@ -10,8 +10,6 @@
 #define __drawdemo__SessionManager__
 
 #include <iostream>
-#import <objc/runtime.h>
-#import <qcc/String.h>
 #include <alljoyn/BusAttachment.h>
 #include <alljoyn/ProxyBusObject.h>
 #include <alljoyn/BusObject.h>
@@ -24,7 +22,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <signal.h>
+#include <string>
 #include "cocos2d.h"
+#include <qcc/String.h>
 #define JOIN_SESSION_NOTIFICATION "JoinSession"
 #define LOST_SESSION_NOTIFICATION "LostSession"
 #define REQ_SYNC_NOTIFICATION "ReqSync"
@@ -34,6 +34,7 @@
 #define PLAYER_UNFOUND_NOTIFICATION "playerUnFound"
 
 using namespace ajn;
+using namespace std;
 
 typedef enum
 {
