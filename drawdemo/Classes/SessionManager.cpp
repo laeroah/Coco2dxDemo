@@ -41,7 +41,7 @@ DrawObject::DrawObject(BusAttachment& bus, const char* path) : BusObject(path), 
                                             NULL);
         
     if (ER_OK != status) {
-            printf("Failed to register signal handler for DrawObject::Draw (%s)\n", QCC_StatusText(status));
+          CCLOG("Failed to register signal handler for DrawObject::Draw (%s)\n", QCC_StatusText(status));
     }
     
     
@@ -53,7 +53,7 @@ DrawObject::DrawObject(BusAttachment& bus, const char* path) : BusObject(path), 
     
     status = AddMethodHandlers(methodEntries, sizeof(methodEntries) / sizeof(methodEntries[0]));
     if (ER_OK != status) {
-        printf("Failed to register method handlers for BasicSampleObject.\n");
+    	CCLOG("Failed to register method handlers for BasicSampleObject.\n");
     }
 }
 
@@ -62,7 +62,7 @@ QStatus DrawObject::sendDrawSignal(const SessionId sessionId, const int commandI
         MsgArg drawArg("is", commandId, commandContent);
         uint8_t flags = 0;
         if (0 == sessionId) {
-            printf("Sending Draw signal without a session id\n");
+        	CCLOG("Sending Draw signal without a session id\n");
         }
         return Signal(NULL, sessionId, *drawSignalMember, &drawArg, 1, 0, flags);
 }
@@ -70,7 +70,7 @@ QStatus DrawObject::sendDrawSignal(const SessionId sessionId, const int commandI
 /** Receive a signal from another Draw client */
 void DrawObject::DrawSignalHandler(const InterfaceDescription::Member* member, const char* srcPath, Message& msg)
 {
-    printf("%s: %d %s\n", msg->GetSender(), msg->GetArg(0)->v_int32, msg->GetArg(0)->v_string.str);
+	CCLOG("%s: %d %s\n", msg->GetSender(), msg->GetArg(0)->v_int32, msg->GetArg(0)->v_string.str);
 }
 
 void DrawObject::ReqSync(const InterfaceDescription::Member* member, Message& msg)
@@ -82,7 +82,7 @@ void DrawObject::ReqSync(const InterfaceDescription::Member* member, Message& ms
     MsgArg outArg("b", 1);
     QStatus status = MethodReply(msg, &outArg, 1);
     if (ER_OK != status) {
-        printf("Ping: Error sending reply.\n");
+    	CCLOG("Ping: Error sending reply.\n");
     }
     
     MTNotificationQueue::sharedInstance()->postNotification(REQ_SYNC_NOTIFICATION, drawCommand);
@@ -98,10 +98,10 @@ void DrawObject::SendSync(const InterfaceDescription::Member* member, Message& m
     MsgArg outArg("b", 1);
     QStatus status = MethodReply(msg, &outArg, 1);
     if (ER_OK != status) {
-        printf("Ping: Error sending reply.\n");
+    	CCLOG("Ping: Error sending reply.\n");
     }
     
-    printf("recv sync command %s",syncCommandContent->mCommandContent.c_str());
+    CCLOG("recv sync command %s",syncCommandContent->mCommandContent.c_str());
     
     MTNotificationQueue::sharedInstance()->postNotification(SYNC_COMMAND_NOTIFICATION, syncCommandContent);
 }
@@ -147,7 +147,7 @@ void DrawBusListener::LostAdvertisedName(const char* name, TransportMask transpo
     }
     
     const char* convName = name + strlen(NAME_PREFIX);
-    printf("Lost draw conversation: \"%s\"\n", convName);
+    CCLOG("Lost draw conversation: \"%s\"\n", convName);
 
     Player *newPlayer = new Player();
     newPlayer->mPlayerName = convName;
@@ -158,7 +158,7 @@ void DrawBusListener::LostAdvertisedName(const char* name, TransportMask transpo
 
 void DrawBusListener::SessionLost(SessionId sessionId, SessionLostReason reason)
 {
-    printf("Got Session Lost\n");
+	CCLOG("Got Session Lost\n");
     mBusAttachment->EnableConcurrentCallbacks();
     mBusAttachment->LeaveSession(mSessionManager->mSessionId);
     mSessionManager->mSessionId = 0;
@@ -172,7 +172,7 @@ void DrawBusListener::SessionLost(SessionId sessionId, SessionLostReason reason)
 bool DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* joiner, const SessionOpts& opts)
 {
     if (sessionPort != DRAW_PORT) {
-        printf("Rejecting join attempt on non-draw session port %d\n", sessionPort);
+    	CCLOG("Rejecting join attempt on non-draw session port %d\n", sessionPort);
         return false;
     }
     
@@ -180,7 +180,7 @@ bool DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* j
         return false;
     }
     
-    printf("Accepting join session request from %s (opts.proximity=%x, opts.traffic=%x, opts.transports=%x)\n",
+    CCLOG("Accepting join session request from %s (opts.proximity=%x, opts.traffic=%x, opts.transports=%x)\n",
                joiner, opts.proximity, opts.traffic, opts.transports);
     
     return true;
@@ -195,9 +195,9 @@ void DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const
     uint32_t timeout = 40;
     QStatus status = mBusAttachment->SetLinkTimeout(id, timeout);
     if (ER_OK == status) {
-            printf("Set link timeout to %d\n", timeout);
+    	CCLOG("Set link timeout to %d\n", timeout);
     } else {
-            printf("Set link timeout failed\n");
+    	CCLOG("Set link timeout failed\n");
     }
 }
 
@@ -341,7 +341,7 @@ QStatus SessionManager::CreateInterface(void)
         drawIntf->AddMethod("SendSync", "is", "b", "commandCount,commandsContent,returnVal", 0);
         drawIntf->Activate();
     } else {
-        printf("Failed to create interface \"%s\" (%s)\n", DRAW_SERVICE_INTERFACE_NAME, QCC_StatusText(status));
+    	CCLOG("Failed to create interface \"%s\" (%s)\n", DRAW_SERVICE_INTERFACE_NAME, QCC_StatusText(status));
     }
     
     return status;
@@ -353,9 +353,9 @@ QStatus SessionManager::StartBus(void)
     QStatus status = mBusAttachment->Start();
     
     if (ER_OK == status) {
-        printf("BusAttachment started.\n");
+    	CCLOG("BusAttachment started.\n");
     } else {
-        printf("Start of BusAttachment failed (%s).\n", QCC_StatusText(status));
+    	CCLOG("Start of BusAttachment failed (%s).\n", QCC_StatusText(status));
     }
     
     return status;
@@ -366,9 +366,9 @@ QStatus SessionManager::RegisterBusObject(DrawObject *drawObject)
     QStatus status = mBusAttachment->RegisterBusObject(*drawObject);
     
     if (ER_OK == status) {
-        printf("RegisterBusObject succeeded.\n");
+    	CCLOG("RegisterBusObject succeeded.\n");
     } else {
-        printf("RegisterBusObject failed (%s).\n", QCC_StatusText(status));
+    	CCLOG("RegisterBusObject failed (%s).\n", QCC_StatusText(status));
     }
     
     return status;
@@ -381,9 +381,9 @@ QStatus SessionManager::ConnectToDaemon(void)
     QStatus status = mBusAttachment->Connect();
     
     if (ER_OK == status) {
-        printf("Connect to '%s' succeeded.\n", mBusAttachment->GetConnectSpec().c_str());
+    	CCLOG("Connect to '%s' succeeded.\n", mBusAttachment->GetConnectSpec().c_str());
     } else {
-        printf("Failed to connect to '%s' (%s).\n", mBusAttachment->GetConnectSpec().c_str(), QCC_StatusText(status));
+    	CCLOG("Failed to connect to '%s' (%s).\n", mBusAttachment->GetConnectSpec().c_str(), QCC_StatusText(status));
     }
     
     return status;
@@ -396,9 +396,9 @@ QStatus SessionManager::RequestName(void)
     
     if (ER_OK == status)
     {
-        printf("RequestName('%s') succeeded.\n", mAdvertisedName.c_str());
+    	CCLOG("RequestName('%s') succeeded.\n", mAdvertisedName.c_str());
     } else {
-        printf("RequestName('%s') failed (status=%s).\n", mAdvertisedName.c_str(), QCC_StatusText(status));
+    	CCLOG("RequestName('%s') failed (status=%s).\n", mAdvertisedName.c_str(), QCC_StatusText(status));
     }
     
     return status;
@@ -412,9 +412,9 @@ QStatus SessionManager::CreateSession(TransportMask mask)
     QStatus status = mBusAttachment->BindSessionPort(sp, opts, *mBusListener);
     
     if (ER_OK == status) {
-       printf("Create session succeeded.");
+    	CCLOG("Create session succeeded.");
     } else {
-       printf("Create session failed. %s",QCC_StatusText(status));
+    	CCLOG("Create session failed. %s",QCC_StatusText(status));
     }
     
     return status;
@@ -426,9 +426,9 @@ QStatus SessionManager::AdvertiseName(TransportMask mask)
     QStatus status = mBusAttachment->AdvertiseName(mAdvertisedName.c_str(), mask);
     
     if (ER_OK == status) {
-       printf("Advertisement of the service name '%s' succeeded.\n", mAdvertisedName.c_str());
+    	CCLOG("Advertisement of the service name '%s' succeeded.\n", mAdvertisedName.c_str());
     } else {
-       printf("Failed to advertise name '%s' (%s).\n", mAdvertisedName.c_str(), QCC_StatusText(status));
+    	CCLOG("Failed to advertise name '%s' (%s).\n", mAdvertisedName.c_str(), QCC_StatusText(status));
     }
     
     return status;
@@ -439,9 +439,9 @@ QStatus SessionManager::CancelAdvertiseName(TransportMask mask)
     QStatus status = mBusAttachment->CancelAdvertiseName(mAdvertisedName.c_str(), mask);
     
     if (ER_OK == status) {
-        printf("Cancel advertisement of the service name '%s' succeeded.\n", mAdvertisedName.c_str());
+    	CCLOG("Cancel advertisement of the service name '%s' succeeded.\n", mAdvertisedName.c_str());
     } else {
-        printf("Failed to cancel advertise name '%s' (%s).\n", mAdvertisedName.c_str(), QCC_StatusText(status));
+    	CCLOG("Failed to cancel advertise name '%s' (%s).\n", mAdvertisedName.c_str(), QCC_StatusText(status));
     }
     
     return status;
@@ -455,9 +455,9 @@ QStatus SessionManager::FindAdvertisedName(void)
     QStatus status = mBusAttachment->FindAdvertisedName(DRAW_SERVICE_INTERFACE_NAME);
     
     if (status == ER_OK) {
-        printf("org.alljoyn.Bus.FindAdvertisedName ('%s') succeeded.\n", DRAW_SERVICE_INTERFACE_NAME);
+    	CCLOG("org.alljoyn.Bus.FindAdvertisedName ('%s') succeeded.\n", DRAW_SERVICE_INTERFACE_NAME);
     } else {
-       printf("org.alljoyn.Bus.FindAdvertisedName ('%s') failed (%s).\n", DRAW_SERVICE_INTERFACE_NAME, QCC_StatusText(status));
+    	CCLOG("org.alljoyn.Bus.FindAdvertisedName ('%s') failed (%s).\n", DRAW_SERVICE_INTERFACE_NAME, QCC_StatusText(status));
     }
     
     return status;
@@ -469,9 +469,9 @@ QStatus SessionManager::CancelFindAdvertisedName(void)
     QStatus status = mBusAttachment->CancelFindAdvertisedName(DRAW_SERVICE_INTERFACE_NAME);
     
     if (status == ER_OK) {
-        printf("org.alljoyn.Bus.FindAdvertisedName ('%s') succeeded.\n", DRAW_SERVICE_INTERFACE_NAME);
+    	CCLOG("org.alljoyn.Bus.FindAdvertisedName ('%s') succeeded.\n", DRAW_SERVICE_INTERFACE_NAME);
     } else {
-        printf("org.alljoyn.Bus.FindAdvertisedName ('%s') failed (%s).\n", DRAW_SERVICE_INTERFACE_NAME, QCC_StatusText(status));
+    	CCLOG("org.alljoyn.Bus.FindAdvertisedName ('%s') failed (%s).\n", DRAW_SERVICE_INTERFACE_NAME, QCC_StatusText(status));
     }
     
     return status;
@@ -496,10 +496,10 @@ QStatus SessionManager::CallSendSync(int commandCount,string &commandContent)
     QStatus status = remoteObj.MethodCall(DRAW_SERVICE_INTERFACE_NAME, "SendSync", inputs, 2, reply, 5000);
     
     if (ER_OK == status) {
-        printf("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "SendSync",
+    	CCLOG("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "SendSync",
                DRAW_SERVICE_OBJECT_PATH, reply->GetArg(0)->v_bool);
     } else {
-        printf("MethodCall on '%s.%s' failed. %s", DRAW_SERVICE_INTERFACE_NAME, "SendSync",QCC_StatusText(status));
+    	CCLOG("MethodCall on '%s.%s' failed. %s", DRAW_SERVICE_INTERFACE_NAME, "SendSync",QCC_StatusText(status));
     }
     
     return status;
@@ -523,10 +523,10 @@ QStatus SessionManager::CallReqSync(int commandId)
     QStatus status = remoteObj.MethodCall(DRAW_SERVICE_INTERFACE_NAME, "ReqSync", inputs, 2, reply, 5000);
     
     if (ER_OK == status) {
-        printf("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "ReqSync",
+    	CCLOG("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "ReqSync",
                DRAW_SERVICE_OBJECT_PATH, reply->GetArg(0)->v_bool);
     } else {
-        printf("MethodCall on '%s.%s' failed. %s", DRAW_SERVICE_INTERFACE_NAME, "ReqSync",QCC_StatusText(status));
+    	CCLOG("MethodCall on '%s.%s' failed. %s", DRAW_SERVICE_INTERFACE_NAME, "ReqSync",QCC_StatusText(status));
     }
     
     return status;
@@ -567,7 +567,7 @@ QStatus SessionManager::JoinSession(const char *wellKnownName)
             MTNotificationQueue::sharedInstance()->postNotification(JOIN_SESSION_NOTIFICATION, NULL);
         }
     } else {
-        printf("Set link timeout failed\n");
+    	CCLOG("Set link timeout failed\n");
     }
     return status;
 }

@@ -28,14 +28,17 @@ void DrawPictureScene::ShowNearPlayers(CCObject *sender)
     }
     
     CCSize contentSize = mNearPlayerItems->getContentSize();
-    
-    if (mWaitingForJoin) {
+    if (mWaitingForJoin)
+    {
+        if (mPlayersArray->count() <= 0)
+        {
+            MessageUtil::postMessage("No players found");
+            return;
+        }
         CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
         CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-    
         CCLayerColor *layerColor = CCLayerColor::create(ccc4(0,0,0,150));
         this->addChild(layerColor,10,200);
-    
         PlayerListLayer* pl = PlayerListLayer::create("BackGround.png");
         pl->setContentSize(CCSizeMake(250, 250));
         pl->setPosition(ccp(origin.x + visibleSize.width/2, origin.y + visibleSize.height/2));
@@ -45,9 +48,6 @@ void DrawPictureScene::ShowNearPlayers(CCObject *sender)
         pl->setPlayerList(mPlayersArray);
         this->addChild(pl,11);
         mWaitingForJoin = false;
-        
-        
-        
         mNearPlayerItems->setNormalSpriteFrame(CCSpriteFrame::create("Door.png", CCRectMake(0,0,contentSize.width,contentSize.height)));
         mNearPlayerItems->setDisabledSpriteFrame(CCSpriteFrame::create("Door.png", CCRectMake(0,0,contentSize.width,contentSize.height)));
     }
@@ -61,6 +61,19 @@ void DrawPictureScene::ShowNearPlayers(CCObject *sender)
         SessionManager::getSharedInstance()->leaveSession();
     }
 }
+
+void DrawPictureScene::menuCloseCallback(CCObject* pSender)
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
+#else
+    CCDirector::sharedDirector()->end();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
+#endif
+}
+
 
 bool DrawPictureScene::init()
 {
@@ -83,8 +96,18 @@ bool DrawPictureScene::init()
         CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
         mNearPlayerItems->setPosition(ccp(origin.x + visibleSize.width - mNearPlayerItems->getContentSize().width/2 - 10,
                                           origin.y + visibleSize.height - mNearPlayerItems->getContentSize().height/2 - 10));
+
+        CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+                                               "CloseNormal.png",
+                                               "CloseSelected.png",
+                                               this,
+                                               menu_selector(DrawPictureScene::menuCloseCallback));
+
+        pCloseItem->setPosition(ccp(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2 ,
+                                        origin.y + pCloseItem->getContentSize().height/2));
+
         // Create a menu with the "close" menu item, it's an auto release object.
-        CCMenu* pMenu = CCMenu::create(mNearPlayerItems, NULL);
+        CCMenu* pMenu = CCMenu::create(mNearPlayerItems, pCloseItem, NULL);
         pMenu->setPosition(CCPointZero);
         
         mWaitingForJoin = true;

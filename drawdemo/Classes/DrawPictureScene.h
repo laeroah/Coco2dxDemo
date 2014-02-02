@@ -35,6 +35,7 @@ public:
     void playerFoundNotification(CCObject* obj);
     void playerUnFoundNotification(CCObject* obj);
     void discoveryPlayers(float dt);
+    void menuCloseCallback(CCObject* pSender);
     CREATE_FUNC(DrawPictureScene);
     CC_SYNTHESIZE_READONLY(CanvasLayer*, _layer, Layer);
 };

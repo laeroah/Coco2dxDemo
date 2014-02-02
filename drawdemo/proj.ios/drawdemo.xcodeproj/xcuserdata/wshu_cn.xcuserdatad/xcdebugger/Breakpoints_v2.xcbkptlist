@@ -266,9 +266,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "DrawBusListener::AcceptSessionJoiner(SessionPort sessionPort, const char* joiner, const SessionOpts&amp; opts)"
-            landmarkType = "5">
+            endingLineNumber = "172">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -388,9 +386,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "DrawBusListener::SessionLost(SessionId sessionId, SessionLostReason reason)"
-            landmarkType = "5">
+            endingLineNumber = "159">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -432,12 +428,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/DrawPictureScene.cpp"
-            timestampString = "412461818.005235"
+            timestampString = "413065520.044775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "DrawPictureScene::syncCommandNotification(CCObject* obj)"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "DrawPictureScene::playerUnFoundNotification(CCObject* obj)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -533,7 +529,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "500"
             endingLineNumber = "500"
-            landmarkName = "SessionManager::CallSendSync(int commandCount,std::string &amp;commandContent)"
+            landmarkName = "SessionManager::CallSendSync(int commandCount,string &amp;commandContent)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -840,9 +836,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "DrawBusListener::FoundAdvertisedName(const char* name, TransportMask transport, const char* namePrefix)"
-            landmarkType = "5">
+            endingLineNumber = "126">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -856,9 +850,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "DrawBusListener::NameOwnerChanged(const char* busName, const char* previousOwner, const char* newOwner)"
-            landmarkType = "5">
+            endingLineNumber = "116">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1038,13 +1030,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/DrawPictureScene.cpp"
-            timestampString = "412461818.005235"
+            timestampString = "413065520.044775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "DrawPictureScene::playerFoundNotification(CCObject* obj)"
-            landmarkType = "5">
+            startingLineNumber = "139"
+            endingLineNumber = "139">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -1084,12 +1074,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/DrawPictureScene.cpp"
-            timestampString = "412461818.005235"
+            timestampString = "413065520.044775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "DrawPictureScene::playerFoundNotification(CCObject* obj)"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "DrawPictureScene::discoveryPlayers(float dt)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1132,13 +1122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/DrawPictureScene.cpp"
-            timestampString = "412461818.005235"
+            timestampString = "413065520.044775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "DrawPictureScene::reqSyncNotification(CCObject* obj)"
-            landmarkType = "5">
+            startingLineNumber = "201"
+            endingLineNumber = "201">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

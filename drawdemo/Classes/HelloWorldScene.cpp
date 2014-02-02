@@ -59,7 +59,7 @@ bool HelloWorld::init()
     userName->setTag(100);
     userName->setPosition(ccp(visibleSize.width/2,visibleSize.height/2+80));
     userName->setColor(ccc3(255, 255, 255));
-    userName->attachWithIME();
+    //userName->attachWithIME();
     userName->myDelegate = this;
     this->addChild(userName,1);
     
@@ -69,6 +69,7 @@ bool HelloWorld::init()
 
 bool HelloWorld::onTextFieldAttachWithIME(CCTextFieldTTF *pSender)
 {
+	CCLOG ("onTextFieldAttachWithIME \n");
     return false;
 }
 
@@ -92,8 +93,11 @@ bool HelloWorld::onTextFieldDetachWithIME(CCTextFieldTTF * pSender)
     {
         mUserName = pSender->getString();
         RunAsServer(NULL);
+        CCLOG ("onTextFieldDetachWithIME %s \n",mUserName.c_str());
         return false;
     }
+
+    CCLOG ("onTextFieldDetachWithIME \n");
 
     return true;
 }
