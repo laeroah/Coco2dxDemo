@@ -229,21 +229,14 @@ SessionManager::SessionManager()
 
 SessionManager::~SessionManager()
 {
-    SendQueue::getSharedInstance()->Reset();
-    cancelFlag = true;
-    pthread_join(tid,NULL);
-    
-    if (mDrawObject) {
-        delete mDrawObject;
+    if (!cancelFlag) {
+        SendQueue::getSharedInstance()->Reset();
+        cancelFlag = true;
+        pthread_join(tid,NULL);
+        cancelFlag = false;
     }
     
-    if (mBusListener) {
-        delete  mBusListener;
-    }
-    
-    if (mBusAttachment) {
-        delete mBusAttachment;
-    }
+    clearProcess();
 }
 
 void    SessionManager::runProcess()
@@ -270,6 +263,47 @@ void SessionManager::reset()
         delete sessionManager;
     }
     sessionManager = NULL;
+}
+
+void    SessionManager::clearProcess()
+{
+    if (mSessionMode == ServerMode)
+    {
+        CancelAdvertiseName(SERVICE_TRANSPORT_TYPE);
+        mSessionMode = ClientMode;
+    }
+    else
+    {
+        //leave old session first
+        leaveSession();
+    }
+    
+    DestroySession(SERVICE_TRANSPORT_TYPE);
+    
+    ReleaseName();
+    
+    DisconnectToDaemon();
+    
+    UnregisterBusObject();
+    
+    if (mDrawObject) {
+        delete mDrawObject;
+    }
+    
+    StopBus();
+    
+    if (mBusListener) {
+        mBusAttachment->UnregisterBusListener(*mBusListener);
+    }
+    
+    if (mBusListener) {
+        delete  mBusListener;
+    }
+    
+    if (mBusAttachment) {
+        delete mBusAttachment;
+    }
+
 }
 
 bool  SessionManager::initServerWithDrawerName(const char *drawerName)
@@ -372,7 +406,6 @@ QStatus SessionManager::CreateInterface(void)
     return status;
 }
 
-
 QStatus SessionManager::StartBus(void)
 {
     QStatus status = mBusAttachment->Start();
@@ -386,6 +419,24 @@ QStatus SessionManager::StartBus(void)
     return status;
 }
 
+QStatus SessionManager::StopBus(void)
+{
+    if (!mBusAttachment)
+    {
+        return ER_OK;
+    }
+    
+    QStatus status = mBusAttachment->Stop();
+    
+    if (ER_OK == status) {
+    	CCLOG("BusAttachment stopped.\n");
+    } else {
+    	CCLOG("Stop of BusAttachment failed (%s).\n", QCC_StatusText(status));
+    }
+    
+    return status;
+}
+
 QStatus SessionManager::RegisterBusObject(DrawObject *drawObject)
 {
     QStatus status = mBusAttachment->RegisterBusObject(*drawObject);
@@ -394,6 +445,23 @@ QStatus SessionManager::RegisterBusObject(DrawObject *drawObject)
     	CCLOG("RegisterBusObject succeeded.\n");
     } else {
     	CCLOG("RegisterBusObject failed (%s).\n", QCC_StatusText(status));
+    }
+    
+    return status;
+}
+
+QStatus SessionManager::UnregisterBusObject()
+{
+    if (!mBusAttachment || !mDrawObject) {
+        return ER_OK;
+    }
+    
+    QStatus status = mBusAttachment->RegisterBusObject(*mDrawObject);
+    
+    if (ER_OK == status) {
+    	CCLOG("UnregisterBusObject succeeded.\n");
+    } else {
+    	CCLOG("UnregisterBusObject failed (%s).\n", QCC_StatusText(status));
     }
     
     return status;
@@ -414,10 +482,45 @@ QStatus SessionManager::ConnectToDaemon(void)
     return status;
 }
 
+QStatus SessionManager::DisconnectToDaemon(void)
+{
+    if (!mBusAttachment) {
+        return ER_OK;
+    }
+    QStatus status = mBusAttachment->Disconnect();
+    
+    if (ER_OK == status) {
+    	CCLOG("Disconnect to daemon succeeded.\n");
+    } else {
+    	CCLOG("Failed to connect to daemon (%s).\n", QCC_StatusText(status));
+    }
+    
+    return status;
+}
+
+
 /** Request the service name, report the result to stdout, and return the status code. */
 QStatus SessionManager::RequestName(void)
 {
     QStatus status = mBusAttachment->RequestName(mAdvertisedName.c_str(), DBUS_NAME_FLAG_DO_NOT_QUEUE );
+    
+    if (ER_OK == status)
+    {
+    	CCLOG("RequestName('%s') succeeded.\n", mAdvertisedName.c_str());
+    } else {
+    	CCLOG("RequestName('%s') failed (status=%s).\n", mAdvertisedName.c_str(), QCC_StatusText(status));
+    }
+    
+    return status;
+}
+
+QStatus SessionManager::ReleaseName(void)
+{
+    if (!mBusAttachment) {
+        return ER_OK;
+    }
+    
+    QStatus status = mBusAttachment->ReleaseName(mAdvertisedName.c_str());
     
     if (ER_OK == status)
     {
@@ -445,6 +548,25 @@ QStatus SessionManager::CreateSession(TransportMask mask)
     return status;
 }
 
+QStatus SessionManager::DestroySession(TransportMask mask)
+{
+    if (!mBusAttachment) {
+        return ER_OK;
+    }
+    
+    SessionPort sp = DRAW_PORT;
+    QStatus status = mBusAttachment->UnbindSessionPort(sp);
+    
+    if (ER_OK == status) {
+    	CCLOG("Unbind session succeeded.");
+    } else {
+    	CCLOG("Unbind session failed. %s",QCC_StatusText(status));
+    }
+    
+    return status;
+}
+
+
 /** Advertise the service name, report the result to stdout, and return the status code. */
 QStatus SessionManager::AdvertiseName(TransportMask mask)
 {
@@ -461,6 +583,10 @@ QStatus SessionManager::AdvertiseName(TransportMask mask)
 
 QStatus SessionManager::CancelAdvertiseName(TransportMask mask)
 {
+    if (!mBusAttachment) {
+        return ER_OK;
+    }
+    
     QStatus status = mBusAttachment->CancelAdvertiseName(mAdvertisedName.c_str(), mask);
     
     if (ER_OK == status) {

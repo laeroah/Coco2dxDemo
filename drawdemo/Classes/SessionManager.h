@@ -79,6 +79,7 @@ class SessionManager
     SessionManager();
     ~SessionManager();
     bool  initServerWithDrawerName(const char *drawerName);
+    void    clearProcess();
     QStatus RegisterBusObject(DrawObject *drawObject);
     QStatus ConnectToDaemon(void);
     QStatus RequestName(void);
@@ -91,6 +92,11 @@ class SessionManager
     QStatus CallSendSync(int commandCount,std::string &commandContent);
     QStatus JoinSession(const char *wellKnownName);
     QStatus leaveSession();
+    QStatus DestroySession(TransportMask mask);
+    QStatus ReleaseName(void);
+    QStatus DisconnectToDaemon(void);
+    QStatus UnregisterBusObject();
+    QStatus StopBus(void);
     bool isInitialized(){ return mIsInitialized; };
     void    runProcess();
     

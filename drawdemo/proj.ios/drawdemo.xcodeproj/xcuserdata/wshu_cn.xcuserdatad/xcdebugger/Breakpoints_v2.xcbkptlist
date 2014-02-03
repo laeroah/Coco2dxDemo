@@ -395,7 +395,7 @@
                   symbolName = "DrawBusListener::SessionLost(unsigned int, ajn::SessionListener::SessionLostReason)"
                   moduleName = "drawdemo"
                   urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
-                  timestampString = "413157045.969777"
+                  timestampString = "413158908.726601"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "163"
@@ -409,7 +409,7 @@
                   symbolName = "DrawBusListener::SessionLost(unsigned int, ajn::SessionListener::SessionLostReason)"
                   moduleName = "drawdemo"
                   urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
-                  timestampString = "413157045.970072"
+                  timestampString = "413158908.726948"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "161"
@@ -423,7 +423,7 @@
                   symbolName = "non-virtual thunk to DrawBusListener::SessionLost(unsigned int, ajn::SessionListener::SessionLostReason)"
                   moduleName = "drawdemo"
                   urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
-                  timestampString = "413157045.970316"
+                  timestampString = "413158908.727172"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "163"
@@ -437,7 +437,7 @@
                   symbolName = "non-virtual thunk to DrawBusListener::SessionLost(unsigned int, ajn::SessionListener::SessionLostReason)"
                   moduleName = "drawdemo"
                   urlString = "file://localhost/Users/wshu_cn/cocos2dx/cocos2d-x-2.2.2/projects/drawdemo/Classes/SessionManager.cpp"
-                  timestampString = "413157045.970537"
+                  timestampString = "413158908.727421"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "161"
@@ -470,11 +470,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "413156682.114254"
+            timestampString = "413158908.538482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
+            startingLineNumber = "621"
+            endingLineNumber = "621"
             landmarkName = "SessionManager::CancelFindAdvertisedName(void)"
             landmarkType = "5">
          </BreakpointContent>
@@ -582,11 +582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "413156682.114254"
+            timestampString = "413158908.538482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "525"
-            endingLineNumber = "525"
+            startingLineNumber = "651"
+            endingLineNumber = "651"
             landmarkName = "SessionManager::CallSendSync(int commandCount,string &amp;commandContent)"
             landmarkType = "5">
             <Locations>
@@ -738,11 +738,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "413156682.114254"
+            timestampString = "413158908.538482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
+            startingLineNumber = "625"
+            endingLineNumber = "625"
             landmarkName = "SessionManager::CancelFindAdvertisedName(void)"
             landmarkType = "5">
             <Locations>
@@ -1148,11 +1148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "413156682.114254"
+            timestampString = "413158908.538482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "706"
+            endingLineNumber = "706"
             landmarkName = "SessionManager::JoinSession(const char *wellKnownName)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1164,11 +1164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SessionManager.cpp"
-            timestampString = "413156682.114254"
+            timestampString = "413158908.538482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "561"
-            endingLineNumber = "561"
+            startingLineNumber = "687"
+            endingLineNumber = "687"
             landmarkName = "SessionManager::JoinSession(const char *wellKnownName)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1232,6 +1232,22 @@
             startingLineNumber = "117"
             endingLineNumber = "117"
             landmarkName = "CanvasLayer::sendSyncCommand(float dt)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/DrawPictureScene.cpp"
+            timestampString = "413158014.565216"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "DrawPictureScene::lostSessionNotification(CCObject* obj)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
