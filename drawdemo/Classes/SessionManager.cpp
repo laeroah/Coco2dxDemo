@@ -487,6 +487,7 @@ QStatus SessionManager::DisconnectToDaemon(void)
     if (!mBusAttachment) {
         return ER_OK;
     }
+    
     QStatus status = mBusAttachment->Disconnect();
     
     if (ER_OK == status) {
@@ -516,7 +517,7 @@ QStatus SessionManager::RequestName(void)
 
 QStatus SessionManager::ReleaseName(void)
 {
-    if (!mBusAttachment) {
+    if (!mBusAttachment || mAdvertisedName.length() <= 0) {
         return ER_OK;
     }
     
@@ -583,7 +584,7 @@ QStatus SessionManager::AdvertiseName(TransportMask mask)
 
 QStatus SessionManager::CancelAdvertiseName(TransportMask mask)
 {
-    if (!mBusAttachment) {
+    if (!mBusAttachment || mAdvertisedName.length() <= 0) {
         return ER_OK;
     }
     

@@ -56,6 +56,8 @@ public:
     void openIME();
     void closeIME();
     
+    std::string *getInputText(){ return m_pInputText;};
+    
     CCTextFieldDelegate *myDelegate;
 };
 

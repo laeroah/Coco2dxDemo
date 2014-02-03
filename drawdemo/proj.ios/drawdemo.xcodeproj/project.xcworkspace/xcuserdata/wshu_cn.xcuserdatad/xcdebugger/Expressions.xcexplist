@@ -54,6 +54,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HelloWorld::onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*):HelloWorldScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "mUserName">
+            </PersistentString>
+            <PersistentString
+               value = "pSender-&gt;getString()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "CanvasLayer::sendSyncCommand(float):CanvasLayer.cpp">
          <PersistentStrings>
             <PersistentString

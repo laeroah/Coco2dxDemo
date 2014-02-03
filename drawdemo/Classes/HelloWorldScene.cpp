@@ -56,10 +56,11 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
     CursorTextField *userName = CursorTextField::textFieldWithPlaceHolder("Please input your name", "Arial", 20);
+    userName->retain();
     userName->setTag(100);
     userName->setPosition(ccp(visibleSize.width/2,visibleSize.height/2+80));
     userName->setColor(ccc3(255, 255, 255));
-    userName->attachWithIME();
+    userName->openIME();
     userName->myDelegate = this;
     this->addChild(userName,1);
     
@@ -88,16 +89,16 @@ void HelloWorld::RunAsServer(CCObject* pSender)
 
 bool HelloWorld::onTextFieldDetachWithIME(CCTextFieldTTF * pSender)
 {
+    
+    CursorTextField *userName = (CursorTextField *)pSender;
     //Initialize session manager
-    if (pSender->getString() != NULL && strlen(pSender->cocos2d::CCLabelTTF::getString()) > 0)
+    if (userName != NULL && userName->getInputText() != NULL && strlen(userName->getInputText()->c_str()) > 0)
     {
-        mUserName = pSender->getString();
+        mUserName = *userName->getInputText();
         RunAsServer(NULL);
         CCLOG ("onTextFieldDetachWithIME %s \n",mUserName.c_str());
         return false;
     }
-
-    CCLOG ("onTextFieldDetachWithIME \n");
 
     return true;
 }
