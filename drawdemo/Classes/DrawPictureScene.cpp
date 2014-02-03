@@ -147,7 +147,7 @@ void DrawPictureScene::discoveryPlayers(float dt)
 
 void DrawPictureScene::postMessage(CCObject* obj)
 {
-    MTNotificationQueue::sharedInstance()->postNotifications(0.1);
+    MTNotificationQueue::sharedInstance()->repostNotifications(0.1);
 }
 
 

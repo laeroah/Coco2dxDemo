@@ -247,6 +247,7 @@
 		F4342B38188F00EB00342BCC /* CursorTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4342B36188F00EB00342BCC /* CursorTextField.cpp */; };
 		F43B6AF21895A48E000CF641 /* Door.png in Resources */ = {isa = PBXBuildFile; fileRef = F43B6AF11895A48E000CF641 /* Door.png */; };
 		F447106A1891B15F00E8F35F /* MTNotificationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */; };
+		F468B95018A03F4E004F02CC /* SendQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F468B94E18A03F4E004F02CC /* SendQueue.cpp */; };
 		F4AC55BC1892C59600BF00AE /* TimeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */; };
 		F4AC55CB1893053400BF00AE /* TintMessageLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55C91893053400BF00AE /* TintMessageLayer.cpp */; };
 		F4AC55CF18930B9C00BF00AE /* GeneralColorLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AC55CD18930B9C00BF00AE /* GeneralColorLayer.cpp */; };
@@ -769,6 +770,8 @@
 		F43B6AF11895A48E000CF641 /* Door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Door.png; sourceTree = "<group>"; };
 		F44710681891B15F00E8F35F /* MTNotificationQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MTNotificationQueue.cpp; path = ../Classes/MTNotificationQueue.cpp; sourceTree = "<group>"; };
 		F44710691891B15F00E8F35F /* MTNotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTNotificationQueue.h; path = ../Classes/MTNotificationQueue.h; sourceTree = "<group>"; };
+		F468B94E18A03F4E004F02CC /* SendQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SendQueue.cpp; path = ../Classes/SendQueue.cpp; sourceTree = "<group>"; };
+		F468B94F18A03F4E004F02CC /* SendQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SendQueue.h; path = ../Classes/SendQueue.h; sourceTree = "<group>"; };
 		F4AC55BA1892C59600BF00AE /* TimeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeUtil.cpp; path = ../Classes/TimeUtil.cpp; sourceTree = "<group>"; };
 		F4AC55BB1892C59600BF00AE /* TimeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeUtil.h; path = ../Classes/TimeUtil.h; sourceTree = "<group>"; };
 		F4AC55C91893053400BF00AE /* TintMessageLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TintMessageLayer.cpp; path = ../Classes/TintMessageLayer.cpp; sourceTree = "<group>"; };
@@ -1834,6 +1837,8 @@
 				F4AC55D218938E3E00BF00AE /* MessageUtil.h */,
 				F4F102191894255E002EB413 /* ModelDialog.cpp */,
 				F4F1021A1894255E002EB413 /* ModelDialog.h */,
+				F468B94E18A03F4E004F02CC /* SendQueue.cpp */,
+				F468B94F18A03F4E004F02CC /* SendQueue.h */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -2163,6 +2168,7 @@
 				1A8F3B76175E05DA00049216 /* BoneData.cpp in Sources */,
 				1A8F3B77175E05DA00049216 /* CCSkeleton.cpp in Sources */,
 				1A8F3B78175E05DA00049216 /* CCSkeletonAnimation.cpp in Sources */,
+				F468B95018A03F4E004F02CC /* SendQueue.cpp in Sources */,
 				375BD5121868454E0024609E /* CCActionNode.cpp in Sources */,
 				1A8F3B79175E05DA00049216 /* extension.cpp in Sources */,
 				1A8F3B7A175E05DA00049216 /* Json.cpp in Sources */,

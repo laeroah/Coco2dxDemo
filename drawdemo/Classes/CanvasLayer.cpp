@@ -9,8 +9,8 @@
 #include "CanvasLayer.h"
 #include "TimeUtil.h"
 #include "PlayerListLayer.h"
-
-
+#include "MTNotificationQueue.h"
+#include "SendQueue.h"
 
 bool CanvasLayer::init()
 {
@@ -118,7 +118,7 @@ void CanvasLayer::sendSyncCommand(float dt)
     bool hasMore;
     int lastSendCommandId;
     
-    if(getCurrentPicture()->getSyncCommandsContent(mLastSendCommandId, 40 , lastSendCommandId, commandContent, commandsCount, hasMore))
+    if(getCurrentPicture()->getSyncCommandsContent(mLastSendCommandId, 100 , lastSendCommandId, commandContent, commandsCount, hasMore))
     {
         unsigned long long curtime = TimeUtil::getCurrentTime();
         
@@ -134,7 +134,7 @@ void CanvasLayer::sendSyncCommand(float dt)
         
         mLastSendSyncCommandTime = curtime;
         mLastSendCommandId = lastSendCommandId;
-        SessionManager::getSharedInstance()->CallSendSync(commandsCount, commandContent);
+        SendQueue::getSharedInstance()->SendCommand(commandsCount, commandContent);
         if (hasMore) {
             this->unschedule(schedule_selector(CanvasLayer::sendSyncCommand));
             this->schedule(schedule_selector(CanvasLayer::sendSyncCommand),0.1,1,0);
@@ -142,10 +142,12 @@ void CanvasLayer::sendSyncCommand(float dt)
     }
     else
     {
-        printf("no new command found %d\n",mLastSendCommandId
+        CCLOG("no new command found %d\n",mLastSendCommandId
                );
 
     }
+    
+    //MTNotificationQueue::sharedInstance()->postNotifications(0.1);
 }
 
 void CanvasLayer::sendTempSyncCommand(float dt)
@@ -155,7 +157,7 @@ void CanvasLayer::sendTempSyncCommand(float dt)
     bool hasMore;
     if(getCurrentPicture()->getSyncTempCommandsContent(40 , commandContent, commandsCount, hasMore))
     {
-        SessionManager::getSharedInstance()->CallSendSync(commandsCount, commandContent);
+       SendQueue::getSharedInstance()->SendCommand(commandsCount, commandContent);
         if (hasMore) {
             this->unschedule(schedule_selector(CanvasLayer::sendTempSyncCommand));
             this->schedule(schedule_selector(CanvasLayer::sendTempSyncCommand),0.1,1,0);

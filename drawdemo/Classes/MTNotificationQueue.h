@@ -22,7 +22,7 @@ public:
     
     static MTNotificationQueue* sharedInstance();
     
-    void postNotifications(float in_fDeltaTime);
+    void repostNotifications(float in_fDeltaTime);
     
     void postNotification(const char* in_pArrCharName, CCObject* in_pCcObj);
     

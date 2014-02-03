@@ -59,7 +59,7 @@ bool HelloWorld::init()
     userName->setTag(100);
     userName->setPosition(ccp(visibleSize.width/2,visibleSize.height/2+80));
     userName->setColor(ccc3(255, 255, 255));
-    //userName->attachWithIME();
+    userName->attachWithIME();
     userName->myDelegate = this;
     this->addChild(userName,1);
     

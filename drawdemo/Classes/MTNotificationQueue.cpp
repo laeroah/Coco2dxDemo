@@ -61,8 +61,13 @@ MTNotificationQueue::MTNotificationQueue() {}
 
 MTNotificationQueue::~MTNotificationQueue() {}
 
-void MTNotificationQueue::postNotifications(float in_fDeltaTime) {
+void MTNotificationQueue::repostNotifications(float in_fDeltaTime) {
     LifeCircleMutexLock(&sharedNotificationQueueLock);
+    
+    if (m_oVecNotifications.size() <= 0)
+    {
+        return;
+    }
     
     CCNotificationCenter* t_pNotiCenter = CCNotificationCenter::sharedNotificationCenter();
     for (uint16_t i = 0; i < m_oVecNotifications.size(); i ++) {

@@ -24,6 +24,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/PictureManager.cpp \
                    ../../Classes/PlayerListLayer.cpp \
                    ../../Classes/SessionManager.cpp \
+                    ../../Classes/SendQueue.cpp \
                    ../../Classes/TimeUtil.cpp \
                    ../../Classes/TintMessageLayer.cpp \
                    ../../Classes/thirdparty/jsoncpp/src/lib_json/json_reader.cpp \

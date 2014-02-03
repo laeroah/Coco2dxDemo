@@ -11,16 +11,18 @@
 #include "Picture.h"
 #include "MTNotificationQueue.h"
 #include "MessageUtil.h"
-
+#include <pthread.h>
+#include "SendQueue.h"
 
 using namespace cocos2d;
-
 
 const static char* DRAW_SERVICE_INTERFACE_NAME = "org.alljoyn.bus.draw";
 const static char* NAME_PREFIX = "org.alljoyn.bus.draw.";
 const static char* DRAW_SERVICE_OBJECT_PATH = "/drawService";
 const static SessionPort  DRAW_PORT = 30;
 const static TransportMask SERVICE_TRANSPORT_TYPE = TRANSPORT_ANY;
+
+
 
 DrawObject::DrawObject(BusAttachment& bus, const char* path) : BusObject(path), drawSignalMember(NULL)
 {
@@ -101,7 +103,7 @@ void DrawObject::SendSync(const InterfaceDescription::Member* member, Message& m
     	CCLOG("Ping: Error sending reply.\n");
     }
     
-    CCLOG("recv sync command %s",syncCommandContent->mCommandContent.c_str());
+    //CCLOG("recv sync command %s",syncCommandContent->mCommandContent.c_str());
     
     MTNotificationQueue::sharedInstance()->postNotification(SYNC_COMMAND_NOTIFICATION, syncCommandContent);
 }
@@ -201,13 +203,36 @@ void DrawBusListener::SessionJoined(SessionPort sessionPort, SessionId id, const
     }
 }
 
+static pthread_t tid;
+static bool cancelFlag = false;
+
+void *sendCommandFunc(void *arg)
+{
+    int cycleCount = 0;
+    while (!cancelFlag) {
+        SendQueue::getSharedInstance()->actSendCommand();
+        if (cycleCount++ % 1 == 0) {
+            usleep(50);
+        }
+    }
+    return NULL;
+}
+
 SessionManager::SessionManager()
 {
     mIsInitialized = false;
+    int err;
+    cancelFlag = false;
+    err = pthread_create(&tid, NULL, sendCommandFunc, NULL);
+    
 }
 
 SessionManager::~SessionManager()
 {
+    SendQueue::getSharedInstance()->Reset();
+    cancelFlag = true;
+    pthread_join(tid,NULL);
+    
     if (mDrawObject) {
         delete mDrawObject;
     }
@@ -496,8 +521,8 @@ QStatus SessionManager::CallSendSync(int commandCount,string &commandContent)
     QStatus status = remoteObj.MethodCall(DRAW_SERVICE_INTERFACE_NAME, "SendSync", inputs, 2, reply, 5000);
     
     if (ER_OK == status) {
-    	CCLOG("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "SendSync",
-               DRAW_SERVICE_OBJECT_PATH, reply->GetArg(0)->v_bool);
+    	//CCLOG("'%s.%s' (path='%s') returned '%d'.\n", DRAW_SERVICE_INTERFACE_NAME, "SendSync",
+          //     DRAW_SERVICE_OBJECT_PATH, reply->GetArg(0)->v_bool);
     } else {
     	CCLOG("MethodCall on '%s.%s' failed. %s", DRAW_SERVICE_INTERFACE_NAME, "SendSync",QCC_StatusText(status));
     }
