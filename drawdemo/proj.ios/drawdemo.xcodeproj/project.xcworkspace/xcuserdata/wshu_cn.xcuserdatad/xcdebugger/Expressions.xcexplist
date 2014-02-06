@@ -11,6 +11,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HelloWorld::onClickTrackNode(bool) [inlined]:HelloWorldScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "bClicked">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SessionManager::CallSendSync(int, std::string&amp;):SessionManager.cpp">
          <PersistentStrings>
             <PersistentString
@@ -46,14 +54,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Picture::getSyncCommandsContent(int, int, int&amp;, std::string&amp;, int&amp;, bool&amp;):Picture.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "lastSendCommandId">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "HelloWorld::onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*):HelloWorldScene.cpp">
          <PersistentStrings>
             <PersistentString
@@ -61,6 +61,14 @@
             </PersistentString>
             <PersistentString
                value = "pSender-&gt;getString()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Picture::getSyncCommandsContent(int, int, int&amp;, std::string&amp;, int&amp;, bool&amp;):Picture.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "lastSendCommandId">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

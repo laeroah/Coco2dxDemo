@@ -1,6 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SessionManager.h"
-#include "CursorTextField.h"
+
 #include "DrawPictureScene.h"
 
 USING_NS_CC;
@@ -20,6 +20,11 @@ CCScene* HelloWorld::scene()
     return scene;
 }
 
+void HelloWorld::registerWithTouchDispatcher()
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -30,6 +35,9 @@ bool HelloWorld::init()
         return false;
     }
     
+    mCharLimit = 255;
+    
+    setTouchEnabled(true);
    
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
@@ -55,18 +63,75 @@ bool HelloWorld::init()
 
     /////////////////////////////
     // 3. add your codes below...
-    CursorTextField *userName = CursorTextField::textFieldWithPlaceHolder("Please input your name", "Arial", 20);
-    userName->retain();
-    userName->setTag(100);
-    userName->setPosition(ccp(visibleSize.width/2,visibleSize.height/2+80));
-    userName->setColor(ccc3(255, 255, 255));
-    userName->openIME();
-    userName->myDelegate = this;
-    this->addChild(userName,1);
+    mUserNameTextField = CCTextFieldTTF::textFieldWithPlaceHolder("Please input your name", "Arial", 20);
+    mUserNameTextField->retain();
+    mUserNameTextField->setTag(100);
+    mUserNameTextField->setPosition(ccp(visibleSize.width/2,visibleSize.height/2+80));
+    mUserNameTextField->setColor(ccc3(255, 255, 255));
+    mUserNameTextField->setDelegate(this);
+    this->addChild(mUserNameTextField,3);
     
     return true;
 }
 
+HelloWorld::~HelloWorld()
+{
+    CC_SAFE_RELEASE(mUserNameTextField);
+}
+
+bool HelloWorld::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    CCLOG("ccTouchBegan");
+    mBeginPos = pTouch->getLocation();
+    return true;
+}
+
+static CCRect getRect(CCNode * pNode)
+{
+    CCRect rc;
+    rc.origin = pNode->getPosition();
+    rc.size = pNode->getContentSize();
+    rc.origin.x -= rc.size.width / 2;
+    rc.origin.y -= rc.size.height / 2;
+    return rc;
+}
+
+void HelloWorld::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+{
+    do
+    {
+        if (mUserNameTextField) {
+            CCPoint endPos = pTouch->getLocation();
+            
+            float delta = 5.f;
+            if (::abs(mBeginPos.x - endPos.x) > delta
+                || ::abs(mBeginPos.y - endPos.y) > delta) {
+                break;
+            }
+            
+            CCRect rect;
+            rect = getRect(mUserNameTextField);
+            this->onClickTrackNode(rect.containsPoint(endPos));
+            
+        }
+    } while (0);
+    
+}
+
+
+void HelloWorld::onClickTrackNode(bool bClicked)
+{
+    if (bClicked)
+    {
+        mUserNameTextField->attachWithIME();
+        CCLOG("attach IME");
+    }
+    else
+    {
+        mUserNameTextField->detachWithIME();
+        CCLOG("detach IME");
+    }
+}
 
 bool HelloWorld::onTextFieldAttachWithIME(CCTextFieldTTF *pSender)
 {
@@ -90,17 +155,17 @@ void HelloWorld::RunAsServer(CCObject* pSender)
 bool HelloWorld::onTextFieldDetachWithIME(CCTextFieldTTF * pSender)
 {
     
-    CursorTextField *userName = (CursorTextField *)pSender;
+    CCTextFieldTTF *userName = (CCTextFieldTTF *)pSender;
     //Initialize session manager
-    if (userName != NULL && userName->getInputText() != NULL && strlen(userName->getInputText()->c_str()) > 0)
+    if (userName != NULL && userName->getString() != NULL && strlen(userName->getString()) > 0)
     {
-        mUserName = *userName->getInputText();
+        mUserName = userName->getString();
         RunAsServer(NULL);
         CCLOG ("onTextFieldDetachWithIME %s \n",mUserName.c_str());
         return false;
     }
 
-    return true;
+    return false;
 }
 
 bool HelloWorld::onTextFieldInsertText(CCTextFieldTTF * pSender, const char * text, int nLen)
